@@ -1,4 +1,4 @@
-package com.solvd.laba.block1.task3;
+package com.solvd.laba.block1.OOP;
 
 public class House extends BuildingCompany{
     private String address;
