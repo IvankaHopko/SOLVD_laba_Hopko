@@ -1,23 +1,19 @@
 package com.solvd.laba.block1.OOP;
 
-public class House extends BuildingCompany{
-    private String address;
-    public int rooms;
-    public int size;
-    public int buildTime;
-    public int cost;
+public class Reception extends Customer{
+public String name;
+public String occupation;
 
-    public House(String address, int rooms, int size, int buildTime, int cost) {
-        this.address = address;
-        this.rooms = rooms;
-        this.size = size;
-        this.buildTime = buildTime;
-        this.cost = cost;
+public Reception(String name, String occupation){
+    this.name = name;
+    this.occupation = occupation;
+}
+
+public Reception(){
+}
+
+    public Reception(String firstName, String lastName, boolean idea, boolean extraMoney){
+    super(firstName, lastName, idea, extraMoney);
     }
-    public String getAddress(){
-        return address;
-    }
-    public void setAddress(String address){
-        this.address = address;
-    }
+
 }
