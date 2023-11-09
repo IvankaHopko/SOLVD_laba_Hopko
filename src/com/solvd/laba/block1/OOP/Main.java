@@ -3,18 +3,17 @@ package com.solvd.laba.block1.OOP;
 public class Main {
     public static void main(String[] args) {
         Customer customer = new Customer("Dean", "Winchester", true, false);
-        Reception reception = new Reception("Ella", "Administrator");
-        EngineeringDept engineeringDept = new EngineeringDept(10, true);
-        ProcurementDept procurementDept = new ProcurementDept(8, 15000);
-        Supplier supplier = new Supplier("Kyiv", "BuildInvest", true);
-        Foremen foremen = new Foremen(50, 50000, 12, true);
+        Receptionist receptionist = new Receptionist("Ella", "Parenti", "Receptionist",
+                20000, 5);
+        Engineer engineer = new Engineer("John", "Bembi", "Senior Engineer",
+                40000, 10, true);
+        PurchasingManager purchasingManager = new PurchasingManager("Mikaela", "Hanks",
+                "Marketer", 25000, 7);
         BuildingCrew buildingCrew = new BuildingCrew(10, 40, false);
-        IndependentAccounting independentAccounting = new IndependentAccounting("SaveYourMoney", "Chernivtsi",
-                5, 12, true);
-        Building building = new Building("OfficeBuilding", 3, "Downtown");
-        CostCalculating costCalculating = new CostCalculating(building, foremen);
-
-        double calculating = costCalculating.calculating();
-        System.out.println("Total construction cost: " + calculating + "$");
+        Accountant accountant = new Accountant("Sarah", "Miles", "Junior Accountant",
+                18000, 1, true);
+        Foreman foreman = new Foreman("Oleg", "Hopko", "Senior Foreman", 70000,
+                20, true);
+        Building building = new Building(2);
     }
 }

@@ -1,36 +1,58 @@
 package com.solvd.laba.block1.OOP;
 
-public class Supplier extends ProcurementDept{
+public abstract class Supplier {
+    private String firstName;
+    private String lastName;
     private String address;
-    private String name;
-    public boolean haveAllNeeded;
+    protected boolean haveAllNeeded;
 
-    public Supplier(String address, String name, boolean haveAllNeeded) {
+    public Supplier(String firstName, String lastName, String address, boolean haveAllNeeded) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
-        this.name = name;
         this.haveAllNeeded = haveAllNeeded;
     }
 
-    public String getAddress(){
-        return address;
+    public Supplier() {
     }
 
-    public void setAddress(String address){
+    protected void sellsNeededMaterial(){
+        if (haveAllNeeded){
+            System.out.println("Your order is fully complected");
+    } else {
+            System.out.println("Not enough items in store");
+        }
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public String getName(){
-        return name;
+    public boolean getHaveAllNeeded() {
+        return this.haveAllNeeded;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setHaveAllNeeded(boolean haveAllNeeded) {
+        this.haveAllNeeded = haveAllNeeded;
     }
-
-    public Supplier(){
-    }
-    public Supplier(int staff, double salary){
-        super(staff, salary);
-    }
-
 }
