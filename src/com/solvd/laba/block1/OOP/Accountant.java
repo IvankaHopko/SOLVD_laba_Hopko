@@ -2,7 +2,8 @@ package com.solvd.laba.block1.OOP;
 
 import java.util.Objects;
 
-public class Accountant extends CompanyEmployees {
+public class Accountant extends CompanyEmployees
+        implements IProvideServices, IMaintainDocumentation, IPayWhenWorkIsDone {
     private String firstName;
     private String lastName;
     private String occupation;
@@ -21,43 +22,6 @@ public class Accountant extends CompanyEmployees {
     }
 
     public Accountant() {
-    }
-
-    public double paysSalary(Receptionist receptionist) {
-        return receptionist.getSalary();
-    }
-
-    public double paysSalary(Engineer engineer) {
-        return engineer.getSalary();
-    }
-    public double paysSalary(Foreman foreman) {
-        return foreman.getSalary();
-    }
-
-    public void checkingForEnoughMoney(){
-        if (enoughMoney) {
-            System.out.println("There is enough money to pay the purchase invoice");
-        }else{
-            System.out.println("Not enough money");
-        }
-    }
-
-    @Override
-    public void provideServices() {
-        System.out.println("I pay salary to building staff and I pay for the purchases of materials");
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Accountant)) return false;
-        Accountant that = (Accountant) o;
-        return Objects.equals(firstName, that.firstName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName);
     }
 
     public String getFirstName() {
@@ -106,6 +70,42 @@ public class Accountant extends CompanyEmployees {
 
     public void setEnoughMoney(boolean enoughMoney) {
         this.enoughMoney = enoughMoney;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Accountant)) return false;
+        Accountant that = (Accountant) o;
+        return Objects.equals(firstName, that.firstName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName);
+    }
+
+    public void checkingForEnoughMoney() {
+        if (enoughMoney) {
+            System.out.println("There is enough money to pay the purchase invoice");
+        } else {
+            System.out.println("Not enough money");
+        }
+    }
+
+    @Override
+    public void provideServices() {
+        System.out.println("I pay salary to building staff and I pay for the purchases of materials");
+    }
+
+    @Override
+    public void doneWorkPayment() {
+        System.out.println("I pay money for the work that is done");
+    }
+
+    @Override
+    public void documentMaintenance() {
+        System.out.println("I maintain accounting documents of the building company");
     }
 }
 

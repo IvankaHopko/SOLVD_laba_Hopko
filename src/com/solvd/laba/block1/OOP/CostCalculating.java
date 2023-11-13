@@ -1,6 +1,6 @@
 package com.solvd.laba.block1.OOP;
 
-public class CostCalculating {
+public abstract class CostCalculating {
     public Building building;
     public BuildingCrew buildingCrew;
 

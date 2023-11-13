@@ -1,6 +1,7 @@
 package com.solvd.laba.block1.OOP;
 
-public class Foreman extends CompanyEmployees {
+public class Foreman extends CompanyEmployees
+        implements IProvideServices, IApproveBuildingMaterials, IApproveDesign, IUpgradeQualification {
     private String firstName;
     private String lastName;
     private String occupation;
@@ -19,26 +20,6 @@ public class Foreman extends CompanyEmployees {
     }
 
     public Foreman() {
-    }
-
-    public void checkingForAllNecessaryToStart(){
-        if (readyToStart) {
-            System.out.println("Ready to start building");
-        } else{
-            System.out.println("Not ready to start building");
-        }
-    }
-
-    @Override
-    public String toString(){
-        return "Foreman{" +
-            "experience=" + experience +
-            '}';
-    }
-
-    @Override
-    public void provideServices() {
-        System.out.println("I lead the building crew");
     }
 
     public String getFirstName() {
@@ -71,6 +52,45 @@ public class Foreman extends CompanyEmployees {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Foreman{" +
+                "experience=" + experience +
+                '}';
+    }
+
+    public void checkingForAllNecessaryToStart() {
+        if (readyToStart) {
+            System.out.println("Ready to start building");
+        } else {
+            System.out.println("Not ready to start building");
+        }
+    }
+
+    @Override
+    public void provideServices() {
+        System.out.println("I lead the building crew");
+    }
+
+    @Override
+    public void buildingMaterialsApproval() {
+        System.out.println("I give my approval about building materials");
+    }
+
+    public final void crewLeading() {
+        System.out.println("I lead the building crew during our work");
+    }
+
+    @Override
+    public void designApproval() {
+        System.out.println("I give my approval about the project design");
+    }
+
+    @Override
+    public void qualificationUpgrading() {
+        System.out.println("I constantly upgrade my knowledge in building and team managing");
     }
 }
 

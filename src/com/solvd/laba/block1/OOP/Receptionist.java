@@ -1,6 +1,6 @@
 package com.solvd.laba.block1.OOP;
 
-public class Receptionist extends CompanyEmployees {
+public class Receptionist extends CompanyEmployees implements IProvideServices, IMaintainDocumentation {
     private String firstName;
     private String lastName;
     private String occupation;
@@ -15,23 +15,7 @@ public class Receptionist extends CompanyEmployees {
         this.experience = experience;
     }
 
-    @Override
-    public String toString(){
-        return "Receptionist{" +
-                "experience=" + experience +
-                '}';
-    }
-
     public Receptionist() {
-    }
-
-    @Override
-    public void provideServices() {
-        System.out.println("I help customer to define the idea");
-    }
-
-    public void passesCustomerRequest() {
-        System.out.println("I have a new project for you to design");
     }
 
     public String getFirstName() {
@@ -72,6 +56,27 @@ public class Receptionist extends CompanyEmployees {
 
     public void setExperience(int experience) {
         this.experience = experience;
+    }
+
+    @Override
+    public String toString() {
+        return "Receptionist{" +
+                "experience=" + experience +
+                '}';
+    }
+
+    @Override
+    public void provideServices() {
+        System.out.println("I help customer to define the idea");
+    }
+
+    public void passesCustomerRequest() {
+        System.out.println("I have a new project for you to design");
+    }
+
+    @Override
+    public void documentMaintenance() {
+        System.out.println("I maintain general company's documentation");
     }
 }
 

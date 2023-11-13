@@ -1,6 +1,6 @@
 package com.solvd.laba.block1.OOP;
 
-public class BuildingCrew extends Foreman {
+public class BuildingCrew extends Foreman implements IUpgradeQualification {
     private int totalExperience;
     private int workingHours;
     public boolean weatherDependence;
@@ -11,9 +11,7 @@ public class BuildingCrew extends Foreman {
         this.weatherDependence = weatherDependence;
     }
 
-    @Override
-    public void provideServices() {
-        System.out.println("We build a new building according to its design");
+    public BuildingCrew() {
     }
 
     public int getTotalExperience() {
@@ -32,6 +30,17 @@ public class BuildingCrew extends Foreman {
         this.workingHours = workingHours;
     }
 
-    public BuildingCrew() {
+    public void buildingWork() {
+        System.out.println("We provide building services according to engineered plan");
+    }
+
+    @Override
+    public void provideServices() {
+        System.out.println("We build a new building according to its design");
+    }
+
+    @Override
+    public void qualificationUpgrading() {
+        System.out.println("We regularly have trainings to upgrade our qualification");
     }
 }

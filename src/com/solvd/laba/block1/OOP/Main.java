@@ -5,7 +5,7 @@ public class Main {
         Customer customer = new Customer("Dean", "Winchester", true, false);
         Receptionist receptionist = new Receptionist("Ella", "Parenti", "Receptionist",
                 20000, 5);
-        Engineer engineer = new Engineer("John", "Bembi", "Senior Engineer",
+        Engineer engineer = new Engineer("John", "Bambie", "Senior Engineer",
                 40000, 10, true);
         PurchasingManager purchasingManager = new PurchasingManager("Mikaela", "Hanks",
                 "Marketer", 25000, 7);

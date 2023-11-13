@@ -1,6 +1,6 @@
 package com.solvd.laba.block1.OOP;
 
-public class Engineer extends CompanyEmployees {
+public class Engineer extends CompanyEmployees implements IProvideServices, IUpgradeQualification {
     private String firstName;
     private String lastName;
     private String occupation;
@@ -9,7 +9,7 @@ public class Engineer extends CompanyEmployees {
     public boolean enoughInfo;
 
     public Engineer(String firstName, String lastName, String occupation, double salary, int experience,
-                    boolean enoughInfo){
+                    boolean enoughInfo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.occupation = occupation;
@@ -19,30 +19,6 @@ public class Engineer extends CompanyEmployees {
     }
 
     public Engineer() {
-    }
-
-    public void checkingForEnoughInfo(){
-        if (enoughInfo) {
-            System.out.println("Ready to start designing");
-        }else{
-            System.out.println("Not enough information");
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "Engineer{" +
-                "salary=" + salary +
-                '}';
-    }
-
-    @Override
-    public void provideServices() {
-        System.out.println("I create a design for a new project");
-    }
-
-    public void passesDesignToProcurementDept(){
-        System.out.println("Check for the needed materials according to provided design");
     }
 
     public String getFirstName() {
@@ -75,6 +51,35 @@ public class Engineer extends CompanyEmployees {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Engineer{" +
+                "salary=" + salary +
+                '}';
+    }
+
+    public void checkingForEnoughInfo() {
+        if (enoughInfo) {
+            System.out.println("Ready to start designing");
+        } else {
+            System.out.println("Not enough information");
+        }
+    }
+
+    @Override
+    public void provideServices() {
+        System.out.println("I create a design for a new project");
+    }
+
+    public void passesDesignToProcurementDept() {
+        System.out.println("Check for the needed materials according to provided design");
+    }
+
+    @Override
+    public void qualificationUpgrading() {
+        System.out.println("I regularly upgrade my knowledge and skills in engineering");
     }
 }
 
