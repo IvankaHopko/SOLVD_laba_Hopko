@@ -1,21 +1,24 @@
-package com.solvd.laba.block1.OOP;
+package com.solvd.laba.block1.oop;
 
-public class Receptionist extends CompanyEmployees implements IProvideServices, IMaintainDocumentation {
+public class Engineer extends CompanyEmployee implements IProvideServices, IUpgradeQualification {
     private String firstName;
     private String lastName;
     private String occupation;
     private double salary;
-    private int experience;
+    public int experience;
+    public boolean enoughInfo;
 
-    public Receptionist(String firstName, String lastName, String occupation, double salary, int experience) {
+    public Engineer(String firstName, String lastName, String occupation, double salary, int experience,
+                    boolean enoughInfo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.occupation = occupation;
         this.salary = salary;
         this.experience = experience;
+        this.enoughInfo = enoughInfo;
     }
 
-    public Receptionist() {
+    public Engineer() {
     }
 
     public String getFirstName() {
@@ -50,35 +53,33 @@ public class Receptionist extends CompanyEmployees implements IProvideServices, 
         this.salary = salary;
     }
 
-    public int getExperience() {
-        return this.experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
     @Override
     public String toString() {
-        return "Receptionist{" +
-                "experience=" + experience +
+        return "Engineer{" +
+                "salary=" + salary +
                 '}';
+    }
+
+    public void checkingForEnoughInfo() {
+        if (enoughInfo) {
+            System.out.println("Ready to start designing");
+        } else {
+            System.out.println("Not enough information");
+        }
     }
 
     @Override
     public void provideServices() {
-        System.out.println("I help customer to define the idea");
+        System.out.println("I create a design for a new project");
     }
 
-    public void passesCustomerRequest() {
-        System.out.println("I have a new project for you to design");
+    public void passesDesignToProcurementDept() {
+        System.out.println("Check for the needed materials according to provided design");
     }
 
     @Override
-    public void documentMaintenance() {
-        System.out.println("I maintain general company's documentation");
+    public void qualificationUpgrading() {
+        System.out.println("I regularly upgrade my knowledge and skills in engineering");
     }
 }
-
-
 

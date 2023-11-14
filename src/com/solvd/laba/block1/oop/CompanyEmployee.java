@@ -1,15 +1,15 @@
-package com.solvd.laba.block1.OOP;
+package com.solvd.laba.block1.oop;
 
 import java.util.Objects;
 
-public class CompanyEmployees {
-    private String firstName;
-    private String lastName;
+public abstract class CompanyEmployee {
+    protected String firstName;
+    protected String lastName;
     protected String occupation;
     private double salary;
-    private int experience;
+    protected int experience;
 
-    public CompanyEmployees(String firstName, String lastName, String occupation, double salary, int experience) {
+    public CompanyEmployee(String firstName, String lastName, String occupation, double salary, int experience) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.occupation = occupation;
@@ -17,14 +17,14 @@ public class CompanyEmployees {
         this.experience = experience;
     }
 
-    public CompanyEmployees() {
+    public CompanyEmployee() {
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CompanyEmployees that = (CompanyEmployees) o;
+        CompanyEmployee that = (CompanyEmployee) o;
         return Double.compare(that.salary, salary) == 0 &&
                 experience == that.experience &&
                 Objects.equals(firstName, that.firstName) &&

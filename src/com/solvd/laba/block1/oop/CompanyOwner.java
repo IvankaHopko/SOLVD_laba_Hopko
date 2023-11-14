@@ -1,4 +1,4 @@
-package com.solvd.laba.block1.OOP;
+package com.solvd.laba.block1.oop;
 
 public final class CompanyOwner {
     final String firstName = "Chandler";

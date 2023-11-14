@@ -1,24 +1,23 @@
-package com.solvd.laba.block1.OOP;
+package com.solvd.laba.block1.oop;
 
-public class Engineer extends CompanyEmployees implements IProvideServices, IUpgradeQualification {
+public class Receptionist extends CompanyEmployee implements IProvideServices, IMaintainDocumentation {
     private String firstName;
     private String lastName;
+    private int age;
     private String occupation;
     private double salary;
-    public int experience;
-    public boolean enoughInfo;
+    private int experience;
 
-    public Engineer(String firstName, String lastName, String occupation, double salary, int experience,
-                    boolean enoughInfo) {
+    public Receptionist(String firstName, String lastName, int age, String occupation, double salary, int experience) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
         this.occupation = occupation;
         this.salary = salary;
         this.experience = experience;
-        this.enoughInfo = enoughInfo;
     }
 
-    public Engineer() {
+    public Receptionist() {
     }
 
     public String getFirstName() {
@@ -37,6 +36,14 @@ public class Engineer extends CompanyEmployees implements IProvideServices, IUpg
         this.lastName = lastName;
     }
 
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getOccupation() {
         return this.occupation;
     }
@@ -53,33 +60,35 @@ public class Engineer extends CompanyEmployees implements IProvideServices, IUpg
         this.salary = salary;
     }
 
-    @Override
-    public String toString() {
-        return "Engineer{" +
-                "salary=" + salary +
-                '}';
+    public int getExperience() {
+        return this.experience;
     }
 
-    public void checkingForEnoughInfo() {
-        if (enoughInfo) {
-            System.out.println("Ready to start designing");
-        } else {
-            System.out.println("Not enough information");
-        }
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    @Override
+    public String toString() {
+        return "Receptionist{" +
+                "experience=" + experience +
+                '}';
     }
 
     @Override
     public void provideServices() {
-        System.out.println("I create a design for a new project");
+        System.out.println("I help customer to define the idea");
     }
 
-    public void passesDesignToProcurementDept() {
-        System.out.println("Check for the needed materials according to provided design");
+    public void passesCustomerRequest() {
+        System.out.println("I have a new project for you to design");
     }
 
     @Override
-    public void qualificationUpgrading() {
-        System.out.println("I regularly upgrade my knowledge and skills in engineering");
+    public void documentMaintenance() {
+        System.out.println("I maintain general company's documentation");
     }
 }
+
+
 

@@ -1,14 +1,14 @@
-package com.solvd.laba.block1.OOP;
+package com.solvd.laba.block1.oop;
 
-public class BuildingCrew extends Foreman implements IUpgradeQualification {
+public class BuildingCrew implements IUpgradeQualification {
     private int totalExperience;
+    private double minCostPerHour;
     private int workingHours;
-    public boolean weatherDependence;
 
-    public BuildingCrew(int totalExperience, int workingHours, boolean weatherDependence) {
+    public BuildingCrew(int totalExperience, double minCostPerHour, int workingHours) {
         this.totalExperience = totalExperience;
+        this.minCostPerHour = minCostPerHour;
         this.workingHours = workingHours;
-        this.weatherDependence = weatherDependence;
     }
 
     public BuildingCrew() {
@@ -20,6 +20,14 @@ public class BuildingCrew extends Foreman implements IUpgradeQualification {
 
     public void setTotalExperience(int totalExperience) {
         this.totalExperience = totalExperience;
+    }
+
+    public double getMinCostPerHour() {
+        return this.minCostPerHour;
+    }
+
+    public void setMinCostPerHour(double minCostPerHour) {
+        this.minCostPerHour = minCostPerHour;
     }
 
     public int getWorkingHours() {

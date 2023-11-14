@@ -1,6 +1,6 @@
-package com.solvd.laba.block1.OOP;
+package com.solvd.laba.block1.oop;
 
-public class Foreman extends CompanyEmployees
+public class Foreman extends CompanyEmployee
         implements IProvideServices, IApproveBuildingMaterials, IApproveDesign, IUpgradeQualification {
     private String firstName;
     private String lastName;

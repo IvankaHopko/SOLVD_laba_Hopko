@@ -1,8 +1,8 @@
-package com.solvd.laba.block1.OOP;
+package com.solvd.laba.block1.oop;
 
 import java.util.Objects;
 
-public class Accountant extends CompanyEmployees
+public class Accountant extends CompanyEmployee
         implements IProvideServices, IMaintainDocumentation, IPayWhenWorkIsDone {
     private String firstName;
     private String lastName;
