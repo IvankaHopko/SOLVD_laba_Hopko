@@ -12,11 +12,7 @@ public class PurchasingManager extends CompanyEmployee
 
     public PurchasingManager(String firstName, String lastName, String occupation, double salary,
                              int experience, int deadlineInMonths, double projectBudget) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.occupation = occupation;
-        this.salary = salary;
-        this.experience = experience;
+        super(firstName, lastName, occupation, salary, experience);
         this.deadlineInMonths = deadlineInMonths;
         this.projectBudget = projectBudget;
     }

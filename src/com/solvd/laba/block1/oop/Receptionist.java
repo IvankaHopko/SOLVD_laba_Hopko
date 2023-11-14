@@ -3,18 +3,14 @@ package com.solvd.laba.block1.oop;
 public class Receptionist extends CompanyEmployee implements IProvideServices, IMaintainDocumentation {
     private String firstName;
     private String lastName;
-    private int age;
     private String occupation;
     private double salary;
     private int experience;
+    private int age;
 
     public Receptionist(String firstName, String lastName, int age, String occupation, double salary, int experience) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        super(firstName, lastName, occupation, salary, experience);
         this.age = age;
-        this.occupation = occupation;
-        this.salary = salary;
-        this.experience = experience;
     }
 
     public Receptionist() {

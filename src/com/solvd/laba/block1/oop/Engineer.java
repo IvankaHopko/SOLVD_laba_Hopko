@@ -10,11 +10,7 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
 
     public Engineer(String firstName, String lastName, String occupation, double salary, int experience,
                     boolean enoughInfo) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.occupation = occupation;
-        this.salary = salary;
-        this.experience = experience;
+        super(firstName, lastName, occupation, salary, experience);
         this.enoughInfo = enoughInfo;
     }
 

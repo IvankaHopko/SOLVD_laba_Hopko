@@ -13,11 +13,7 @@ public class Accountant extends CompanyEmployee
 
     protected Accountant(String firstName, String lastName, String occupation, double salary,
                          int experience, boolean enoughMoney) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.occupation = occupation;
-        this.salary = salary;
-        this.experience = experience;
+        super(firstName, lastName, occupation, salary, experience);
         this.enoughMoney = enoughMoney;
     }
 
