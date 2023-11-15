@@ -1,7 +1,6 @@
 package com.solvd.laba.block1.oop;
 
 public class Main {
-    public double totalPrice;
 
     public static void main(String[] args) {
 
@@ -23,8 +22,6 @@ public class Main {
         Building desiredBuilding = new Building(2, 70, "suburbs", "townhouse");
         Customer customer = new Customer("Dean", "Winchester", desiredBuilding);
 
-        CostCalculating costCalculating = new CostCalculating();
-
         System.out.println("Customer: " + customer.getFirstName() + " " + customer.getLastName() + "\n\n" +
                 "Desired building: " + "\n" + customer.getDesiredBuilding());
 
@@ -33,14 +30,8 @@ public class Main {
         String location = desiredBuilding.getLocation();
         String typeOfBuilding = desiredBuilding.getTypeOfBuilding();
 
-        double costCalculationOnFloors = costCalculating.costCalculationOnFloors(desiredBuilding);
-        double costCalculationOnMeterSquared = costCalculating.costCalculationOnMeterSquared(desiredBuilding);
-        double costCalculationOnLocation = costCalculating.costCalculationOnLocation(desiredBuilding);
-        double costCalculationOnBuildingType = costCalculating.costCalculationOnBuildingType(desiredBuilding);
-        double costCalcutationOnWorkingHours = costCalculating.costCalculationOnWorkingHours(buildingCrew);
+        double totalPrice = CostCalculating.totalPriceCalculation(desiredBuilding, buildingCrew);
 
-        double totalPrice = costCalculationOnFloors + costCalculationOnMeterSquared + costCalculationOnLocation +
-                costCalculationOnBuildingType + costCalcutationOnWorkingHours;
         System.out.println("\n" + "Total price: " + totalPrice);
     }
 }

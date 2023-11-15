@@ -1,10 +1,9 @@
 package com.solvd.laba.block1.oop;
 
-import java.math.BigDecimal;
-
 public class CostCalculating {
+    static double totalPrice;
 
-    public double costCalculationOnFloors(Building building) {
+    public static double costCalculationOnFloors(Building building) {
         int floors = building.getFloors();
         double costPerFloor = 10000;
         double cost = (costPerFloor * floors);
@@ -85,6 +84,17 @@ public class CostCalculating {
             System.out.println("It is necessary to discuss the dependence of the price");
         }
         return cost;
+    }
+
+    public static double totalPriceCalculation(Building building, BuildingCrew buildingCrew) {
+        double costCalculationOnFloors = costCalculationOnFloors(building);
+        double costCalculationOnMeterSquared = costCalculationOnMeterSquared(building);
+        double costCalcutationOnWorkingHours = costCalculationOnWorkingHours(buildingCrew);
+        double costCalculationOnLocation = costCalculationOnLocation(building);
+        double costCalculationOnBuildingType = costCalculationOnBuildingType(building);
+
+        return costCalculationOnFloors + costCalculationOnMeterSquared + costCalculationOnLocation +
+                costCalcutationOnWorkingHours + costCalculationOnBuildingType;
     }
 }
 
