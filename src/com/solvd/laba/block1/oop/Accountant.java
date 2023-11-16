@@ -1,5 +1,9 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
+import com.solvd.laba.block1.oop.interfaces.IPayWhenWorkIsDone;
+import com.solvd.laba.block1.oop.interfaces.IProvideServices;
+
 import java.util.Objects;
 
 public class Accountant extends CompanyEmployee

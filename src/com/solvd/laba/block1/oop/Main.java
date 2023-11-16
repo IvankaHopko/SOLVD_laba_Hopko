@@ -27,6 +27,7 @@ public class Main {
 
         int floors = desiredBuilding.getFloors();
         double area = desiredBuilding.getArea();
+        int hours = buildingCrew.getWorkingHours();
         String location = desiredBuilding.getLocation();
         String typeOfBuilding = desiredBuilding.getTypeOfBuilding();
 

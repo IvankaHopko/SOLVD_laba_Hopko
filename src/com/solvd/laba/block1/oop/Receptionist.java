@@ -1,5 +1,8 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
+import com.solvd.laba.block1.oop.interfaces.IProvideServices;
+
 public class Receptionist extends CompanyEmployee implements IProvideServices, IMaintainDocumentation {
     private String firstName;
     private String lastName;

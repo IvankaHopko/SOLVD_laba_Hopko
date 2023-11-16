@@ -1,5 +1,8 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.interfaces.IApproveDesign;
+import com.solvd.laba.block1.oop.interfaces.IPayWhenWorkIsDone;
+
 import java.util.Objects;
 
 public class Customer implements IPayWhenWorkIsDone, IApproveDesign {

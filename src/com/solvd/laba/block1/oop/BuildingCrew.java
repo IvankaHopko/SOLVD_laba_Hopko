@@ -1,5 +1,7 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
+
 public class BuildingCrew implements IUpgradeQualification {
     private int totalExperience;
     private double minCostPerHour;

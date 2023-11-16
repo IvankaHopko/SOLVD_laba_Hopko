@@ -1,5 +1,8 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.interfaces.IProvideServices;
+import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
+
 public class Engineer extends CompanyEmployee implements IProvideServices, IUpgradeQualification {
     private String firstName;
     private String lastName;

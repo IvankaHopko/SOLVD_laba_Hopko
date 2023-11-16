@@ -1,12 +1,16 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.interfaces.IApproveBuildingMaterials;
+import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
+import com.solvd.laba.block1.oop.interfaces.IProvideServices;
+
 public class PurchasingManager extends CompanyEmployee
         implements IProvideServices, IMaintainDocumentation, IApproveBuildingMaterials {
     private String firstName;
     private String lastName;
     private String occupation;
     private double salary;
-    public int experience;
+    private int experience;
     private int deadlineInMonths;
     private double projectBudget;
 
@@ -50,6 +54,14 @@ public class PurchasingManager extends CompanyEmployee
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public int getExperience() {
+        return this.experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     public int getDeadlineInMonths() {

@@ -1,9 +1,9 @@
 package com.solvd.laba.block1.oop;
 
 public final class CompanyOwner {
-    final String firstName = "Chandler";
-    final String lastName = "Bing";
-    public boolean soleOwnership;
+    private final String firstName = "Chandler";
+    private final String lastName = "Bing";
+    private boolean soleOwnership;
 
     static {
         System.out.println("CompanyOwner class is being initialized");

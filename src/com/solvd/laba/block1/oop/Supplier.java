@@ -1,5 +1,7 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
+
 public abstract class Supplier implements IMaintainDocumentation {
     private String firstName;
     private String lastName;

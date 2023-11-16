@@ -1,17 +1,22 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.interfaces.IApproveBuildingMaterials;
+import com.solvd.laba.block1.oop.interfaces.IApproveDesign;
+import com.solvd.laba.block1.oop.interfaces.IProvideServices;
+import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
+
 public class Foreman extends CompanyEmployee
         implements IProvideServices, IApproveBuildingMaterials, IApproveDesign, IUpgradeQualification {
     private String firstName;
     private String lastName;
     private String occupation;
     private double salary;
-    public int experience;
-    public boolean readyToStart;
+    private int experience;
+    private boolean readyToStart;
 
     public Foreman(String firstName, String lastName, String occupation, double salary, int experience,
                    boolean readyToStart) {
-       super(firstName, lastName, occupation, salary, experience);
+        super(firstName, lastName, occupation, salary, experience);
         this.readyToStart = readyToStart;
     }
 
@@ -48,6 +53,22 @@ public class Foreman extends CompanyEmployee
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public int getExperience() {
+        return this.experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public boolean getReadyToStart() {
+        return this.readyToStart;
+    }
+
+    public void setReadyToStart(boolean readyToStart) {
+        this.readyToStart = readyToStart;
     }
 
     @Override
