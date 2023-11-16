@@ -86,7 +86,7 @@ public class CostCalculating {
         return cost;
     }
 
-    static final double totalPriceCalculation(Building building, BuildingCrew buildingCrew) {
+    protected static final double totalPriceCalculation(Building building, BuildingCrew buildingCrew) {
         double costCalculationOnFloors = costCalculationOnFloors(building);
         double costCalculationOnMeterSquared = costCalculationOnMeterSquared(building);
         double costCalcutationOnWorkingHours = costCalculationOnWorkingHours(buildingCrew);
