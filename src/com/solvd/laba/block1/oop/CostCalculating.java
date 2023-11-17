@@ -1,6 +1,16 @@
 package com.solvd.laba.block1.oop;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class CostCalculating {
+
+    private static final Logger LOGGER = LogManager.getLogger(CostCalculating.class);
+
+    static {
+        System.setProperty("log4.configurationFile", "log4j2.xml");
+    }
+
     static double totalPrice;
 
     public static double costCalculationOnFloors(Building building) {
@@ -62,7 +72,7 @@ public class CostCalculating {
         } else if (location.equals("downtown")) {
             cost = regularCost + (regularCost * 0.25);
         } else {
-            System.out.println("It is necessary to discuss the dependence of the price");
+            LOGGER.info("It is necessary to discuss the dependence of the price");
         }
         return cost;
     }
@@ -81,7 +91,7 @@ public class CostCalculating {
         } else if (typeOfBuilding.equals("villa")) {
             cost = regularCost + (regularCost * 0.35);
         } else {
-            System.out.println("It is necessary to discuss the dependence of the price");
+            LOGGER.info("It is necessary to discuss the dependence of the price");
         }
         return cost;
     }

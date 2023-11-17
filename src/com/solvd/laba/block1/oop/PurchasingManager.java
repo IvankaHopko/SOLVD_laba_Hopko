@@ -1,11 +1,21 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.exceptions.InsufficientFundsException;
 import com.solvd.laba.block1.oop.interfaces.IApproveBuildingMaterials;
 import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class PurchasingManager extends CompanyEmployee
         implements IProvideServices, IMaintainDocumentation, IApproveBuildingMaterials {
+
+    private static final Logger LOGGER = LogManager.getLogger(PurchasingManager.class);
+
+    static {
+        System.setProperty("log4.configurationFile", "log4j2.xml");
+    }
+
     private String firstName;
     private String lastName;
     private String occupation;
@@ -13,12 +23,14 @@ public class PurchasingManager extends CompanyEmployee
     private int experience;
     private int deadlineInMonths;
     private double projectBudget;
+    private static double requiredCost;
 
     public PurchasingManager(String firstName, String lastName, String occupation, double salary,
-                             int experience, int deadlineInMonths, double projectBudget) {
+                             int experience, int deadlineInMonths, double projectBudget, double requiredCost) {
         super(firstName, lastName, occupation, salary, experience);
         this.deadlineInMonths = deadlineInMonths;
         this.projectBudget = projectBudget;
+        this.requiredCost = requiredCost;
     }
 
     public PurchasingManager() {
@@ -80,6 +92,14 @@ public class PurchasingManager extends CompanyEmployee
         this.projectBudget = projectBudget;
     }
 
+    public double getRequiredCost() {
+        return this.requiredCost;
+    }
+
+    public void setRequiredCost(double requiredCost) {
+        this.requiredCost = requiredCost;
+    }
+
     @Override
     public String toString() {
         return "PurchasingManager{" +
@@ -95,21 +115,30 @@ public class PurchasingManager extends CompanyEmployee
 
     @Override
     public void provideServices() {
-        System.out.println("I communicate with supplier and purchase the needed materials");
+        LOGGER.info("I search for suppliers to purchase the needed materials");
     }
 
     @Override
     public void documentMaintenance() {
-        System.out.println("I maintain documentation about purchases");
+        LOGGER.info("I maintain documentation about purchases");
     }
 
     @Override
     public void buildingMaterialsApproval() {
-        System.out.println("I give my approval about building materials");
+        LOGGER.info("I give my approval about building materials");
     }
 
     public void communication() {
-        System.out.println("I communicate with suppliers about the quality of needed materials");
+        LOGGER.info("I communicate with suppliers about the quality of needed materials");
+    }
+
+    public void makingAPurchase(double requiredCost) throws InsufficientFundsException {
+        if (projectBudget < requiredCost) {
+            throw new InsufficientFundsException("The purchase price exceeds the allowable budget");
+        } else {
+            LOGGER.info("All needed materials are successfully purchased");
+            projectBudget -= requiredCost;
+        }
     }
 }
 

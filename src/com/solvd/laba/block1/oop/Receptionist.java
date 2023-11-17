@@ -2,8 +2,17 @@ package com.solvd.laba.block1.oop;
 
 import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Receptionist extends CompanyEmployee implements IProvideServices, IMaintainDocumentation {
+
+    private static final Logger LOGGER = LogManager.getLogger(Receptionist.class);
+
+    static {
+        System.setProperty("log4.configurationFile", "log4j2.xml");
+    }
+
     private String firstName;
     private String lastName;
     private String occupation;
@@ -76,16 +85,16 @@ public class Receptionist extends CompanyEmployee implements IProvideServices, I
 
     @Override
     public void provideServices() {
-        System.out.println("I help customer to define the idea");
+        LOGGER.info("I help customer to define the idea");
     }
 
     public void passesCustomerRequest() {
-        System.out.println("I have a new project for you to design");
+        LOGGER.info("I have a new project for you to design");
     }
 
     @Override
     public void documentMaintenance() {
-        System.out.println("I maintain general company's documentation");
+        LOGGER.info("I maintain general company's documentation");
     }
 }
 

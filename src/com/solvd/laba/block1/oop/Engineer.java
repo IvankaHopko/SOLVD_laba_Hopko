@@ -1,14 +1,24 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.exceptions.NotEnoughInfo;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
 import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Engineer extends CompanyEmployee implements IProvideServices, IUpgradeQualification {
+
+    private static final Logger LOGGER = LogManager.getLogger(Engineer.class);
+
+    static {
+        System.setProperty("log4.configurationFile", "log4j2.xml");
+    }
+
     private String firstName;
     private String lastName;
     private String occupation;
     private double salary;
-    public int experience;
+    private int experience;
     public boolean enoughInfo;
 
     public Engineer(String firstName, String lastName, String occupation, double salary, int experience,
@@ -52,6 +62,14 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
         this.salary = salary;
     }
 
+    public int getExperience() {
+        return this.experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
     @Override
     public String toString() {
         return "Engineer{" +
@@ -59,26 +77,28 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
                 '}';
     }
 
-    public void checkingForEnoughInfo() {
-        if (enoughInfo) {
-            System.out.println("Ready to start designing");
+    public static void checkingForEnoughInfo(boolean enoughInfo) throws NotEnoughInfo {
+        if (!enoughInfo) {
+            throw new NotEnoughInfo("Cannot execute project. Please, provide more details");
         } else {
-            System.out.println("Not enough information");
+            LOGGER.info("Order has been accepted for execution");
         }
     }
 
+
+
     @Override
     public void provideServices() {
-        System.out.println("I create a design for a new project");
+        LOGGER.info("I create a design for a new project");
     }
 
     public void passesDesignToProcurementDept() {
-        System.out.println("Check for the needed materials according to provided design");
+        LOGGER.info("Check for the needed materials according to provided design");
     }
 
     @Override
     public void qualificationUpgrading() {
-        System.out.println("I regularly upgrade my knowledge and skills in engineering");
+        LOGGER.info("I regularly upgrade my knowledge and skills in engineering");
     }
 }
 

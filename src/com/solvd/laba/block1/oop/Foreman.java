@@ -1,12 +1,22 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.exceptions.NotReadyToStart;
 import com.solvd.laba.block1.oop.interfaces.IApproveBuildingMaterials;
 import com.solvd.laba.block1.oop.interfaces.IApproveDesign;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
 import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Foreman extends CompanyEmployee
         implements IProvideServices, IApproveBuildingMaterials, IApproveDesign, IUpgradeQualification {
+
+    private static final Logger LOGGER = LogManager.getLogger(Foreman.class);
+
+    static {
+        System.setProperty("log4.configurationFile", "log4j2.xml");
+    }
+
     private String firstName;
     private String lastName;
     private String occupation;
@@ -78,36 +88,36 @@ public class Foreman extends CompanyEmployee
                 '}';
     }
 
-    public void checkingForAllNecessaryToStart() {
-        if (readyToStart) {
-            System.out.println("Ready to start building");
+    public static void checkingForAllNecessaryToStart(boolean readyToStart) throws NotReadyToStart {
+        if (!readyToStart) {
+            throw new NotReadyToStart("Cannot start to work on a project");
         } else {
-            System.out.println("Not ready to start building");
+            LOGGER.info("The project has been successfully started");
         }
     }
 
     @Override
     public void provideServices() {
-        System.out.println("I lead the building crew");
+        LOGGER.info("I lead the building crew");
     }
 
     @Override
     public void buildingMaterialsApproval() {
-        System.out.println("I give my approval about building materials");
+        LOGGER.info("I give my approval about building materials");
     }
 
     public final void crewLeading() {
-        System.out.println("I lead the building crew during our work");
+        LOGGER.info("I lead the building crew during our work");
     }
 
     @Override
     public void designApproval() {
-        System.out.println("I give my approval about the project design");
+        LOGGER.info("I give my approval about the project design");
     }
 
     @Override
     public void qualificationUpgrading() {
-        System.out.println("I constantly upgrade my knowledge in building and team managing");
+        LOGGER.info("I constantly upgrade my knowledge in building and team managing");
     }
 }
 

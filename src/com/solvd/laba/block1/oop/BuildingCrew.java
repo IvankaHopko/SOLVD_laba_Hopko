@@ -1,16 +1,28 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.exceptions.OutOfTime;
 import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BuildingCrew implements IUpgradeQualification {
+
+    private static final Logger LOGGER = LogManager.getLogger(BuildingCrew.class);
+
+    static {
+        System.setProperty("log4.configurationFile", "log4j2.xml");
+    }
+
     private int totalExperience;
     private double minCostPerHour;
     private int workingHours;
+    private int monthsToBuild;
 
-    public BuildingCrew(int totalExperience, double minCostPerHour, int workingHours) {
+    public BuildingCrew(int totalExperience, double minCostPerHour, int workingHours, int monthsToBuild) {
         this.totalExperience = totalExperience;
         this.minCostPerHour = minCostPerHour;
         this.workingHours = workingHours;
+        this.monthsToBuild = monthsToBuild;
     }
 
     public BuildingCrew() {
@@ -40,17 +52,33 @@ public class BuildingCrew implements IUpgradeQualification {
         this.workingHours = workingHours;
     }
 
+    public int getMonthsToBuild() {
+        return this.monthsToBuild;
+    }
+
+    public void setMonthsToBuild(int monthsToBuild) {
+        this.monthsToBuild = monthsToBuild;
+    }
+
     public void buildingWork() {
-        System.out.println("We provide building services according to engineered plan");
+        LOGGER.info("We provide building services according to engineered plan");
     }
 
     @Override
     public void provideServices() {
-        System.out.println("We build a new building according to its design");
+        LOGGER.info("We build a new building according to its design");
     }
 
     @Override
     public void qualificationUpgrading() {
-        System.out.println("We regularly have trainings to upgrade our qualification");
+        LOGGER.info("We regularly have trainings to upgrade our qualification");
+    }
+
+    public static void buildingProcess(int monthsToBuild) throws OutOfTime {
+        if (monthsToBuild > 12) {
+            throw new OutOfTime("Out of limited time");
+        } else {
+            LOGGER.info("Project is finished in time");
+        }
     }
 }

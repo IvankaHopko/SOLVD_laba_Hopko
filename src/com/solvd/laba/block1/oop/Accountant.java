@@ -3,11 +3,24 @@ package com.solvd.laba.block1.oop;
 import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
 import com.solvd.laba.block1.oop.interfaces.IPayWhenWorkIsDone;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Objects;
 
 public class Accountant extends CompanyEmployee
         implements IProvideServices, IMaintainDocumentation, IPayWhenWorkIsDone {
+
+    private static final Logger LOGGER = LogManager.getLogger(Accountant.class);
+
+    static {
+        System.setProperty("log4.configurationFile", "log4j2.xml");
+    }
+
     private String firstName;
     private String lastName;
     private String occupation;
@@ -87,25 +100,41 @@ public class Accountant extends CompanyEmployee
 
     public void checkingForEnoughMoney() {
         if (enoughMoney) {
-            System.out.println("There is enough money to pay the purchase invoice");
+            LOGGER.info("There is enough money to pay the purchase invoice");
         } else {
-            System.out.println("Not enough money");
+            LOGGER.info("Not enough money");
         }
     }
 
     @Override
     public void provideServices() {
-        System.out.println("I pay salary to building staff and I pay for the purchases of materials");
+        LOGGER.info("I pay salary to building staff and I pay for the purchases of materials");
     }
 
     @Override
     public void doneWorkPayment() {
-        System.out.println("I pay money for the work that is done");
+        LOGGER.info("I pay money for the work that is done");
     }
 
     @Override
     public void documentMaintenance() {
-        System.out.println("I maintain accounting documents of the building company");
+        LOGGER.info("I maintain accounting documents of the building company");
+    }
+
+    public static void taxReporting() throws FileNotFoundException {
+        try (FileReader fileReader = new FileReader("Settlement accounting journal.txt");
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
+            StringBuilder content = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+
+            String fileContent = content.toString();
+            LOGGER.info(fileContent);
+        } catch (IOException e) {
+            LOGGER.error("Documentation mistake occurred that needs to be checked");
+        }
     }
 }
-
