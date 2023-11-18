@@ -133,8 +133,9 @@ public class Accountant extends CompanyEmployee
 
             String fileContent = content.toString();
             LOGGER.info(fileContent);
+
         } catch (IOException e) {
-            LOGGER.error("Documentation mistake occurred that needs to be checked");
+            throw new FileNotFoundException("File not found");
         }
     }
 }

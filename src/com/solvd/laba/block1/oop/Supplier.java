@@ -5,7 +5,7 @@ import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public abstract class Supplier implements IMaintainDocumentation {
+public class Supplier implements IMaintainDocumentation {
 
     private static final Logger LOGGER = LogManager.getLogger(Supplier.class);
 
@@ -64,7 +64,7 @@ public abstract class Supplier implements IMaintainDocumentation {
         if (haveAllNeeded) {
             LOGGER.info("Your order is fully complected");
         } else {
-            LOGGER.info("Not enough items in store");
+            LOGGER.error("Not enough items in store");
         }
     }
 

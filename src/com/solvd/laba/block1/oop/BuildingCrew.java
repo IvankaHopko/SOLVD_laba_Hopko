@@ -1,6 +1,6 @@
 package com.solvd.laba.block1.oop;
 
-import com.solvd.laba.block1.oop.exceptions.OutOfTime;
+import com.solvd.laba.block1.oop.exceptions.OutOfTimeException;
 import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -74,9 +74,9 @@ public class BuildingCrew implements IUpgradeQualification {
         LOGGER.info("We regularly have trainings to upgrade our qualification");
     }
 
-    public static void buildingProcess(int monthsToBuild) throws OutOfTime {
+    public static void buildingProcess(int monthsToBuild) throws OutOfTimeException {
         if (monthsToBuild > 12) {
-            throw new OutOfTime("Out of limited time");
+            throw new OutOfTimeException("Out of limited time");
         } else {
             LOGGER.info("Project is finished in time");
         }

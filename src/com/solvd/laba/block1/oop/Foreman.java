@@ -1,6 +1,6 @@
 package com.solvd.laba.block1.oop;
 
-import com.solvd.laba.block1.oop.exceptions.NotReadyToStart;
+import com.solvd.laba.block1.oop.exceptions.NotReadyToStartException;
 import com.solvd.laba.block1.oop.interfaces.IApproveBuildingMaterials;
 import com.solvd.laba.block1.oop.interfaces.IApproveDesign;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
@@ -88,9 +88,9 @@ public class Foreman extends CompanyEmployee
                 '}';
     }
 
-    public static void checkingForAllNecessaryToStart(boolean readyToStart) throws NotReadyToStart {
+    public static void checkingForAllNecessaryToStart(boolean readyToStart) throws NotReadyToStartException {
         if (!readyToStart) {
-            throw new NotReadyToStart("Cannot start to work on a project");
+            throw new NotReadyToStartException("Cannot start to work on a project");
         } else {
             LOGGER.info("The project has been successfully started");
         }

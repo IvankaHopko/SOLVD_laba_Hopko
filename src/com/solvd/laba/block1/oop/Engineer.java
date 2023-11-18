@@ -1,6 +1,6 @@
 package com.solvd.laba.block1.oop;
 
-import com.solvd.laba.block1.oop.exceptions.NotEnoughInfo;
+import com.solvd.laba.block1.oop.exceptions.NotEnoughInfoException;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
 import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
 import org.apache.logging.log4j.LogManager;
@@ -19,12 +19,12 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
     private String occupation;
     private double salary;
     private int experience;
-    public boolean enoughInfo;
+    private static boolean enoughInfo;
 
     public Engineer(String firstName, String lastName, String occupation, double salary, int experience,
                     boolean enoughInfo) {
         super(firstName, lastName, occupation, salary, experience);
-        this.enoughInfo = enoughInfo;
+        Engineer.enoughInfo = enoughInfo;
     }
 
     public Engineer() {
@@ -70,6 +70,14 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
         this.experience = experience;
     }
 
+    public boolean getEnoughInfo() {
+        return Engineer.enoughInfo;
+    }
+
+    public void setEnoughInfo(boolean enoughInfo) {
+        Engineer.enoughInfo = enoughInfo;
+    }
+
     @Override
     public String toString() {
         return "Engineer{" +
@@ -77,15 +85,13 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
                 '}';
     }
 
-    public static void checkingForEnoughInfo(boolean enoughInfo) throws NotEnoughInfo {
+    public static void checkingForEnoughInfo(boolean enoughInfo) throws NotEnoughInfoException {
         if (!enoughInfo) {
-            throw new NotEnoughInfo("Cannot execute project. Please, provide more details");
+            throw new NotEnoughInfoException("Cannot execute project. Please, provide more details");
         } else {
             LOGGER.info("Order has been accepted for execution");
         }
     }
-
-
 
     @Override
     public void provideServices() {

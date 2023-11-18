@@ -23,7 +23,7 @@ public class PurchasingManager extends CompanyEmployee
     private int experience;
     private int deadlineInMonths;
     private double projectBudget;
-    private static double requiredCost;
+    private double requiredCost;
 
     public PurchasingManager(String firstName, String lastName, String occupation, double salary,
                              int experience, int deadlineInMonths, double projectBudget, double requiredCost) {
