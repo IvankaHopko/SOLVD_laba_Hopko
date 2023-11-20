@@ -77,11 +77,12 @@ public class Supplier implements IMaintainDocumentation {
         LOGGER.info("I maintain orders documentation");
     }
 
-    public static void inStockChecking(boolean haveAllNeeded) throws NotInStockException {
+    public static boolean inStockChecking(boolean haveAllNeeded) throws NotInStockException {
         if (!haveAllNeeded) {
             throw new NotInStockException("Not enough goods in stock");
         } else {
             LOGGER.info("Ready to ship the order");
         }
+        return haveAllNeeded;
     }
 }

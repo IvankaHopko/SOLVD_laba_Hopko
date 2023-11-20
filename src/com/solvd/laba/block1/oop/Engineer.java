@@ -98,6 +98,11 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
         LOGGER.info("I create a design for a new project");
     }
 
+    @Override
+    public void documentMaintenance() {
+        LOGGER.info("I analyze all documents related to the current project");
+    }
+
     public void passesDesignToProcurementDept() {
         LOGGER.info("Check for the needed materials according to provided design");
     }

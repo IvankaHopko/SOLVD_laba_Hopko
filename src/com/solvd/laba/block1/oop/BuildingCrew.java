@@ -16,13 +16,16 @@ public class BuildingCrew implements IUpgradeQualification {
     private int totalExperience;
     private double minCostPerHour;
     private int workingHours;
+    private static int deadlineInMonths;
     private int monthsToBuild;
 
-    public BuildingCrew(int totalExperience, double minCostPerHour, int workingHours, int monthsToBuild) {
+    public BuildingCrew(int totalExperience, double minCostPerHour, int workingHours, int deadlineInMonths,
+                        int monthsToBuild) {
         this.totalExperience = totalExperience;
         this.minCostPerHour = minCostPerHour;
         this.workingHours = workingHours;
         this.monthsToBuild = monthsToBuild;
+        BuildingCrew.deadlineInMonths = deadlineInMonths;
     }
 
     public BuildingCrew() {
@@ -52,6 +55,14 @@ public class BuildingCrew implements IUpgradeQualification {
         this.workingHours = workingHours;
     }
 
+    public int getDeadlineInMonths() {
+        return BuildingCrew.deadlineInMonths;
+    }
+
+    public void setDeadline(int deadlineInMonths) {
+        BuildingCrew.deadlineInMonths = deadlineInMonths;
+    }
+
     public int getMonthsToBuild() {
         return this.monthsToBuild;
     }
@@ -74,11 +85,14 @@ public class BuildingCrew implements IUpgradeQualification {
         LOGGER.info("We regularly have trainings to upgrade our qualification");
     }
 
-    public static void buildingProcess(int monthsToBuild) throws OutOfTimeException {
-        if (monthsToBuild > 12) {
+    public static int buildingProcess(int monthsToBuild) throws OutOfTimeException {
+        int finalWorksTime = 0;
+        if (monthsToBuild > deadlineInMonths) {
             throw new OutOfTimeException("Out of limited time");
         } else {
             LOGGER.info("Project is finished in time");
+            finalWorksTime = (deadlineInMonths - monthsToBuild);
         }
+        return finalWorksTime;
     }
 }

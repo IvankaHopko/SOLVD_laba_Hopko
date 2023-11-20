@@ -76,10 +76,8 @@ public abstract class CompanyEmployee {
         this.experience = experience;
     }
 
-    public void provideServices() {
-    }
+    public abstract void provideServices();
 
-    public void documentMaintenance() {
-    }
+    public abstract void documentMaintenance();
 }
 

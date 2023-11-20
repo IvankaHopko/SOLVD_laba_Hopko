@@ -88,12 +88,13 @@ public class Foreman extends CompanyEmployee
                 '}';
     }
 
-    public static void checkingForAllNecessaryToStart(boolean readyToStart) throws NotReadyToStartException {
+    public static boolean checkingForAllNecessaryToStart(boolean readyToStart) throws NotReadyToStartException {
         if (!readyToStart) {
             throw new NotReadyToStartException("Cannot start to work on a project");
         } else {
             LOGGER.info("The project has been successfully started");
         }
+        return readyToStart;
     }
 
     @Override
@@ -118,6 +119,10 @@ public class Foreman extends CompanyEmployee
     @Override
     public void qualificationUpgrading() {
         LOGGER.info("I constantly upgrade my knowledge in building and team managing");
+    }
+
+    @Override
+    public void documentMaintenance() {
     }
 }
 

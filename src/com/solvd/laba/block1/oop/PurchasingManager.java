@@ -21,15 +21,13 @@ public class PurchasingManager extends CompanyEmployee
     private String occupation;
     private double salary;
     private int experience;
-    private int deadlineInMonths;
-    private double projectBudget;
+    private static double projectBudget;
     private double requiredCost;
 
     public PurchasingManager(String firstName, String lastName, String occupation, double salary,
-                             int experience, int deadlineInMonths, double projectBudget, double requiredCost) {
+                             int experience, double projectBudget, double requiredCost) {
         super(firstName, lastName, occupation, salary, experience);
-        this.deadlineInMonths = deadlineInMonths;
-        this.projectBudget = projectBudget;
+        PurchasingManager.projectBudget = projectBudget;
         this.requiredCost = requiredCost;
     }
 
@@ -76,20 +74,12 @@ public class PurchasingManager extends CompanyEmployee
         this.experience = experience;
     }
 
-    public int getDeadlineInMonths() {
-        return this.deadlineInMonths;
-    }
-
-    public void setDeadline(int deadlineInMonths) {
-        this.deadlineInMonths = deadlineInMonths;
-    }
-
     public double getProjectBudget() {
-        return this.projectBudget;
+        return PurchasingManager.projectBudget;
     }
 
     public void setProjectBudget(double projectBudget) {
-        this.projectBudget = projectBudget;
+        PurchasingManager.projectBudget = projectBudget;
     }
 
     public double getRequiredCost() {
@@ -108,7 +98,6 @@ public class PurchasingManager extends CompanyEmployee
                 ", occupation=" + getOccupation() +
                 ", salary=" + getSalary() + '\'' +
                 ", experience=" + getExperience() + '\'' +
-                ", deadline=" + getDeadlineInMonths() +
                 ", projectBudget=" + getProjectBudget() +
                 '}';
     }
@@ -132,13 +121,15 @@ public class PurchasingManager extends CompanyEmployee
         LOGGER.info("I communicate with suppliers about the quality of needed materials");
     }
 
-    public void makingAPurchase(double requiredCost) throws InsufficientFundsException {
+    public static double makingAPurchase(double requiredCost) throws InsufficientFundsException {
+        double fundsLeft = 0;
         if (projectBudget < requiredCost) {
             throw new InsufficientFundsException("The purchase price exceeds the allowable budget");
         } else {
             LOGGER.info("All needed materials are successfully purchased");
-            projectBudget -= requiredCost;
+            fundsLeft = (projectBudget - requiredCost);
         }
+        return fundsLeft;
     }
 }
 
