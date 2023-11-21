@@ -79,5 +79,17 @@ public abstract class CompanyEmployee {
     public abstract void provideServices();
 
     public abstract void documentMaintenance();
+
+    public double getRequiredCost() {
+        return this.getRequiredCost();
+    }
+
+    public boolean getReadyToStart() {
+        return this.getReadyToStart();
+    }
+
+    public boolean getEnoughInfo() {
+        return getEnoughInfo();
+    }
 }
 

@@ -5,6 +5,8 @@ import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.LinkedList;
+
 public class BuildingCrew implements IUpgradeQualification {
 
     private static final Logger LOGGER = LogManager.getLogger(BuildingCrew.class);
@@ -19,6 +21,8 @@ public class BuildingCrew implements IUpgradeQualification {
     private static int deadlineInMonths;
     private int monthsToBuild;
 
+    private static LinkedList<BuildingCrew> buildingCrewList = new LinkedList<>();
+
     public BuildingCrew(int totalExperience, double minCostPerHour, int workingHours, int deadlineInMonths,
                         int monthsToBuild) {
         this.totalExperience = totalExperience;
@@ -26,6 +30,8 @@ public class BuildingCrew implements IUpgradeQualification {
         this.workingHours = workingHours;
         this.monthsToBuild = monthsToBuild;
         BuildingCrew.deadlineInMonths = deadlineInMonths;
+
+        buildingCrewList.add(this);
     }
 
     public BuildingCrew() {

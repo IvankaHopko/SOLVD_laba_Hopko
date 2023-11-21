@@ -4,6 +4,8 @@ import com.solvd.laba.block1.oop.exceptions.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+
 public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
@@ -14,25 +16,25 @@ public class Main {
 
     public static void main(String[] args) throws NotInStockException, NotReadyToStartException {
 
-        Receptionist receptionist = new Receptionist("Ella", "Parenti", 26,
-                "Receptionist", 20000, 5);
-        Engineer engineer = new Engineer("John", "Bambie", "Senior Engineer",
-                40000, 10, false);
-        PurchasingManager purchasingManager = new PurchasingManager("Mikaela", "Hanks",
-                "Marketer", 25000, 7, 500000, 350000);
+        ArrayList<CompanyEmployee> employees = new ArrayList<>();
 
+        employees.add(new Receptionist("Ella", "Parenti", 26,
+                "Receptionist", 20000, 5));
+        employees.add(new Engineer("John", "Bambie", "Senior Engineer",
+                40000, 10, false));
+        employees.add(new PurchasingManager("Mikaela", "Hanks",
+                "Marketer", 25000, 7, 500000, 350000));
+        employees.add(new Accountant("Sarah", "Miles", "Junior Accountant",
+                18000, 1, true));
+        employees.add(new Foreman("Bill", "Moore", "senior foreman", 60000,
+                25, true));
         BuildingCrew buildingCrew = new BuildingCrew(10, 100, 40,
                 12, 10);
-        Accountant accountant = new Accountant("Sarah", "Miles", "Junior Accountant",
-                18000, 1, true);
-        Foreman foreman = new Foreman("Bill", "Moore", "senior foreman", 60000,
-                25, true);
-
         Building desiredBuilding = new Building(2, 70, "suburbs", "townhouse");
         Customer customer = new Customer("Dean", "Winchester", desiredBuilding);
         Supplier supplier = new Supplier("John", "Dogget", "Kyiv", true);
 
-        LOGGER.info("Customer: " + customer.getFirstName() + " " + customer.getLastName() + "\n\n" +
+        LOGGER.info("\n\nCustomer: " + customer.getFirstName() + " " + customer.getLastName() + "\n\n" +
                 "Desired building: " + "\n" + customer.getDesiredBuilding());
 
         double totalPrice = CostCalculating.totalPriceCalculation(desiredBuilding, buildingCrew);
@@ -43,15 +45,15 @@ public class Main {
         LOGGER.info("All in stock: " + Supplier.inStockChecking(supplier.getHaveAllNeeded()));
 
         try {
-            double fundsLeft = PurchasingManager.makingAPurchase(purchasingManager.getRequiredCost());
+            double fundsLeft = PurchasingManager.makingAPurchase(employees.get(2).getRequiredCost());
             LOGGER.info("Funds left after purchase: " + fundsLeft);
         } catch (InsufficientFundsException e) {
             LOGGER.error(e.getMessage());
         }
 
-        Foreman.checkingForAllNecessaryToStart(foreman.getReadyToStart());
+        Foreman.checkingForAllNecessaryToStart(employees.get(4).getReadyToStart());
         LOGGER.info("All preparations are done and we are ready to start: " +
-                Foreman.checkingForAllNecessaryToStart(foreman.getReadyToStart()));
+                Foreman.checkingForAllNecessaryToStart(employees.get(4).getReadyToStart()));
 
         try {
             int finalWorksTime = BuildingCrew.buildingProcess(buildingCrew.getMonthsToBuild());
@@ -61,7 +63,7 @@ public class Main {
         }
 
         try {
-            Engineer.checkingForEnoughInfo(engineer.getEnoughInfo());
+            Engineer.checkingForEnoughInfo(employees.get(1).getEnoughInfo());
         } catch (NotEnoughInfoException e) {
             LOGGER.error(e.getMessage());
         }
