@@ -1,5 +1,6 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.exceptions.NotImplementedMethodException;
 import com.solvd.laba.block1.oop.exceptions.NotReadyToStartException;
 import com.solvd.laba.block1.oop.interfaces.IApproveBuildingMaterials;
 import com.solvd.laba.block1.oop.interfaces.IApproveDesign;
@@ -7,6 +8,8 @@ import com.solvd.laba.block1.oop.interfaces.IProvideServices;
 import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Objects;
 
 public class Foreman extends CompanyEmployee
         implements IProvideServices, IApproveBuildingMaterials, IApproveDesign, IUpgradeQualification {
@@ -122,7 +125,40 @@ public class Foreman extends CompanyEmployee
     }
 
     @Override
-    public void documentMaintenance() {
+    public void documentMaintenance() throws NotImplementedMethodException {
+    }
+
+    public static class Foremen<S> implements Comparable<Foreman> {
+        private String lastName;
+        private int experience;
+
+        public Foremen(String lastName, int experience) {
+            this.lastName = lastName;
+            this.experience = experience;
+        }
+
+        @Override
+        public String toString() {
+            return "Last Name: " + lastName + " Experience: " + experience;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Foremen)) return false;
+            Foremen<S> foremen = (Foremen<S>) o;
+            return experience == foremen.experience && Objects.equals(lastName, foremen.lastName);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(lastName, experience);
+        }
+
+        @Override
+        public int compareTo(Foreman o) {
+            return Integer.compare(this.experience, o.experience);
+        }
     }
 }
 
