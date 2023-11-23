@@ -2,19 +2,19 @@ package com.solvd.laba.block1.oop.mapsAndCollections;
 
 import com.solvd.laba.block1.oop.Building;
 
-public class BuildingLinkedList {
-    private Node head;
+public class BuildingLinkedList<T> {
+    private Node<T> head;
     private int size;
 
     public void add(Building building) {
         if (head == null) {
-            this.head = new Node(building);
+            this.head = new Node<T>(building);
         } else {
-            Node temp = head;
+            Node<T> temp = head;
             while (temp.getNext() != null) {
                 temp = temp.getNext();
             }
-            temp.setNext(new Node(building));
+            temp.setNext(new Node<T>(building));
         }
         size++;
     }
@@ -23,7 +23,7 @@ public class BuildingLinkedList {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Incorrect index");
         }
-        Node current = head;
+        Node<T> current = head;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
@@ -41,8 +41,8 @@ public class BuildingLinkedList {
             return true;
         }
 
-        Node current = head;
-        Node previous = null;
+        Node<T> current = head;
+        Node<T> previous = null;
 
         while (current != null && !current.data.equals(building)) {
             previous = current;
@@ -62,9 +62,9 @@ public class BuildingLinkedList {
         return size;
     }
 
-    private static class Node {
+    private static class Node<T> {
         private Building data;
-        private Node next;
+        private Node<T> next;
 
         public Node(Building data) {
             this.data = data;
@@ -78,11 +78,11 @@ public class BuildingLinkedList {
             this.data = data;
         }
 
-        public Node getNext() {
+        public Node<T> getNext() {
             return this.next;
         }
 
-        public void setNext(Node next) {
+        public void setNext(Node<T> next) {
             this.next = next;
         }
     }

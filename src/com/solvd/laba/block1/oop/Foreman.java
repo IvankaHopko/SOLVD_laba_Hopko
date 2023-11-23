@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Objects;
 
-public class Foreman extends CompanyEmployee
-        implements IProvideServices, IApproveBuildingMaterials, IApproveDesign, IUpgradeQualification {
+public class Foreman extends CompanyEmployee implements IProvideServices, IApproveBuildingMaterials, IApproveDesign,
+                                                        IUpgradeQualification, Comparable<Foreman> {
 
     private static final Logger LOGGER = LogManager.getLogger(Foreman.class);
 
@@ -87,8 +87,31 @@ public class Foreman extends CompanyEmployee
     @Override
     public String toString() {
         return "Foreman{" +
-                "experience=" + experience +
+                "firstName=" + getFirstName() + " " +
+                "lastName=" + getLastName() + " " +
+                "occupation=" + getOccupation() + " " +
+                "salary=" + getSalary() + " " +
+                "experience=" + getExperience() + " " +
+                "readyToStart=" + getReadyToStart() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Foreman foreman = (Foreman) o;
+        return Double.compare(foreman.salary, salary) == 0 &&
+                experience == foreman.experience &&
+                readyToStart == foreman.readyToStart &&
+                Objects.equals(firstName, foreman.firstName) &&
+                Objects.equals(lastName, foreman.lastName) &&
+                Objects.equals(occupation, foreman.occupation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastName, experience);
     }
 
     public static boolean checkingForAllNecessaryToStart(boolean readyToStart) throws NotReadyToStartException {
@@ -128,37 +151,9 @@ public class Foreman extends CompanyEmployee
     public void documentMaintenance() throws NotImplementedMethodException {
     }
 
-    public static class Foremen<S> implements Comparable<Foreman> {
-        private String lastName;
-        private int experience;
-
-        public Foremen(String lastName, int experience) {
-            this.lastName = lastName;
-            this.experience = experience;
-        }
-
-        @Override
-        public String toString() {
-            return "Last Name: " + lastName + " Experience: " + experience;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Foremen)) return false;
-            Foremen<S> foremen = (Foremen<S>) o;
-            return experience == foremen.experience && Objects.equals(lastName, foremen.lastName);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(lastName, experience);
-        }
-
-        @Override
-        public int compareTo(Foreman o) {
-            return Integer.compare(this.experience, o.experience);
-        }
+    @Override
+    public int compareTo(Foreman otherForeman) {
+        return Integer.compare(this.experience, otherForeman.experience);
     }
 }
 

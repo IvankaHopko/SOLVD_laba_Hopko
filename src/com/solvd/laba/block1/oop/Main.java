@@ -69,20 +69,20 @@ public class Main {
             LOGGER.error(e.getMessage());
         }
 
-        BuildingLinkedList buildingList = new BuildingLinkedList();
+        BuildingLinkedList<Building> buildings = new BuildingLinkedList<>();
 
-        buildingList.add(new Building(3, 220, "in woods", "villa"));
-        buildingList.add(new Building(9, 500, "downtown", "block of flats"));
-        buildingList.add(new Building(2, 90, "suburbs", "cottage"));
-        buildingList.add(new Building(1, 40, "suburbs", "eco-house"));
+        buildings.add(new Building(3, 220, "in woods", "villa"));
+        buildings.add(new Building(9, 500, "downtown", "block of flats"));
+        buildings.add(new Building(2, 90, "suburbs", "cottage"));
+        buildings.add(new Building(1, 40, "suburbs", "eco-house"));
 
-        for (int i = 0; i < buildingList.size(); i++) {
-            LOGGER.info(buildingList.get(i));
+        for (int i = 0; i < buildings.size(); i++) {
+            LOGGER.info(buildings.get(i));
             LOGGER.info("\n");
         }
 
         Building buildingToRemove = new Building(2, 90, "suburbs", "cottage");
-        boolean removed = buildingList.remove(buildingToRemove);
+        boolean removed = buildings.remove(buildingToRemove);
 
         if (removed) {
             LOGGER.info("\nBuilding has been removed successfully");
@@ -91,56 +91,44 @@ public class Main {
         }
 
         LOGGER.info("\nBuildings after removing:" + "\n");
-        for (int i = 0; i < buildingList.size(); i++) {
-            LOGGER.info(buildingList.get(i));
+        for (int i = 0; i < buildings.size(); i++) {
+            LOGGER.info(buildings.get(i));
         }
 
-        HashSet<Foreman.Foremen<String>> foremenHashSet = new HashSet<>();
-        Foreman.Foremen<String> foreman1 = new Foreman.Foremen<>("Moore", 25);
-        Foreman.Foremen<String> foreman2 = new Foreman.Foremen<>("Jackson", 17);
-        Foreman.Foremen<String> foreman3 = new Foreman.Foremen<>("Broom", 6);
-        Foreman.Foremen<String> foreman4 = new Foreman.Foremen<>("Gates", 2);
+        Set<Foreman> foremanHashSet = new HashSet<>();
 
-        foremenHashSet.add(foreman1);
-        foremenHashSet.add(foreman2);
-        foremenHashSet.add(foreman3);
-        foremenHashSet.add(foreman4);
+        foremanHashSet.add(new Foreman("Bill", "Moore", "Lead foreman", 40000, 25, true));
+        foremanHashSet.add(new Foreman("Chris", "Jackson", "Senior foreman", 25000, 17, true));
+        foremanHashSet.add(new Foreman("Denis", "Broom", "Foreman", 20000, 6, true));
+        foremanHashSet.add(new Foreman("Neal", "Gates", "Junior foreman", 16000, 2, true));
 
         LOGGER.info("Foremen details: ");
-        for (Foreman.Foremen<String> details : foremenHashSet) {
-            LOGGER.info(details);
+        for (Foreman foreman : foremanHashSet) {
+            LOGGER.info("Experience: " + foreman.getExperience() + ", " + "Last Name: " + foreman.getLastName());
         }
 
-        LinkedHashSet<Foreman.Foremen<String>> foremenLinkedHashSet = new LinkedHashSet<>();
-        Foreman.Foremen<String> crewLeader1 = new Foreman.Foremen<>("Moore", 25);
-        Foreman.Foremen<String> crewLeader2 = new Foreman.Foremen<>("Jackson", 17);
-        Foreman.Foremen<String> crewLeader3 = new Foreman.Foremen<>("Broom", 6);
-        Foreman.Foremen<String> crewLeader4 = new Foreman.Foremen<>("Gates", 2);
+        Set<Foreman> foremanLinkedHashSet = new LinkedHashSet<>();
 
-        foremenLinkedHashSet.add(crewLeader1);
-        foremenLinkedHashSet.add(crewLeader2);
-        foremenLinkedHashSet.add(crewLeader3);
-        foremenLinkedHashSet.add(crewLeader4);
+        foremanLinkedHashSet.add(new Foreman("Steve", "Hook", "Lead foreman", 40000, 19, true));
+        foremanLinkedHashSet.add(new Foreman("Joe", "Miles", "Senior foreman", 25000, 15, true));
+        foremanLinkedHashSet.add(new Foreman("Luke", "Drake", "Foreman", 20000, 9, true));
+        foremanLinkedHashSet.add(new Foreman("Sam", "Novak", "Junior foreman", 16000, 3, true));
 
         LOGGER.info("\nForemen details: ");
-        for (Foreman.Foremen<String> details : foremenLinkedHashSet) {
-            LOGGER.info(details);
+        for (Foreman foreman : foremanLinkedHashSet) {
+            LOGGER.info("Experience: " + foreman.getExperience() + ", " + "Last Name: " + foreman.getLastName());
         }
 
-        TreeSet<Foreman.Foremen<String>> foremenTreeSet = new TreeSet<>(Comparator.comparingInt(Foreman.Foremen::hashCode));
-        Foreman.Foremen<String> seniorWorker1 = new Foreman.Foremen<>("Moore", 25);
-        Foreman.Foremen<String> seniorWorker2 = new Foreman.Foremen<>("Jackson", 17);
-        Foreman.Foremen<String> seniorWorker3 = new Foreman.Foremen<>("Broom", 6);
-        Foreman.Foremen<String> seniorWorker4 = new Foreman.Foremen<>("Gates", 2);
+        Set<Foreman> foremanTreeSet = new TreeSet<>(Comparator.comparingInt(Foreman::getExperience));
 
-        foremenTreeSet.add(seniorWorker1);
-        foremenTreeSet.add(seniorWorker2);
-        foremenTreeSet.add(seniorWorker3);
-        foremenTreeSet.add(seniorWorker4);
+        foremanTreeSet.add(new Foreman("Jim", "Stain", "Lead foreman", 40000, 26, true));
+        foremanTreeSet.add(new Foreman("Mike", "Anderson", "Senior foreman", 25000, 15, true));
+        foremanTreeSet.add(new Foreman("Will", "Middleton", "Foreman", 20000, 7, true));
+        foremanTreeSet.add(new Foreman("Bobby", "Ringo", "Junior foreman", 16000, 1, true));
 
         LOGGER.info("\nForemen details: ");
-        for (Foreman.Foremen<String> details : foremenTreeSet) {
-            LOGGER.info(details);
+        for (Foreman foreman : foremanTreeSet) {
+            LOGGER.info("Experience: " + foreman.getExperience() + ", " + "Last Name: " + foreman.getLastName());
         }
     }
 }
