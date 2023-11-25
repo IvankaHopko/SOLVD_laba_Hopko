@@ -16,86 +16,12 @@ public class Accountant extends CompanyEmployee
         implements IProvideServices, IMaintainDocumentation, IPayWhenWorkIsDone {
 
     private static final Logger LOGGER = LogManager.getLogger(Accountant.class);
-
-    static {
-        System.setProperty("log4.configurationFile", "log4j2.xml");
-    }
-
-    private String firstName;
-    private String lastName;
-    private String occupation;
-    protected double salary;
-    protected int experience;
     private boolean enoughMoney;
 
     protected Accountant(String firstName, String lastName, String occupation, double salary,
                          int experience, boolean enoughMoney) {
         super(firstName, lastName, occupation, salary, experience);
         this.enoughMoney = enoughMoney;
-    }
-
-    public Accountant() {
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getOccupation() {
-        return this.occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public double getSalary() {
-        return this.salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public int getExperience() {
-        return this.experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
-    public boolean getEnoughMoney() {
-        return this.enoughMoney;
-    }
-
-    public void setEnoughMoney(boolean enoughMoney) {
-        this.enoughMoney = enoughMoney;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Accountant)) return false;
-        Accountant that = (Accountant) o;
-        return Objects.equals(firstName, that.firstName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName);
     }
 
     public void checkingForEnoughMoney() {
@@ -137,5 +63,26 @@ public class Accountant extends CompanyEmployee
         } catch (IOException e) {
             throw new FileNotFoundException("File not found");
         }
+    }
+
+    public boolean getEnoughMoney() {
+        return this.enoughMoney;
+    }
+
+    public void setEnoughMoney(boolean enoughMoney) {
+        this.enoughMoney = enoughMoney;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Accountant)) return false;
+        Accountant that = (Accountant) o;
+        return Objects.equals(firstName, that.firstName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName);
     }
 }

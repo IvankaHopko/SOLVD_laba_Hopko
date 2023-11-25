@@ -10,15 +10,6 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
 
     private static final Logger LOGGER = LogManager.getLogger(Engineer.class);
 
-    static {
-        System.setProperty("log4.configurationFile", "log4j2.xml");
-    }
-
-    private String firstName;
-    private String lastName;
-    private String occupation;
-    private double salary;
-    private int experience;
     private static boolean enoughInfo;
 
     public Engineer(String firstName, String lastName, String occupation, double salary, int experience,
@@ -27,70 +18,16 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
         Engineer.enoughInfo = enoughInfo;
     }
 
-    public Engineer() {
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getOccupation() {
-        return this.occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public double getSalary() {
-        return this.salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public int getExperience() {
-        return this.experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
-    public boolean getEnoughInfo() {
-        return Engineer.enoughInfo;
-    }
-
-    public void setEnoughInfo(boolean enoughInfo) {
-        Engineer.enoughInfo = enoughInfo;
-    }
-
-    @Override
-    public String toString() {
-        return "Engineer{" +
-                "salary=" + salary +
-                '}';
-    }
-
     public static void checkingForEnoughInfo(boolean enoughInfo) throws NotEnoughInfoException {
         if (!enoughInfo) {
             throw new NotEnoughInfoException("Cannot execute project. Please, provide more details");
         } else {
             LOGGER.info("Order has been accepted for execution");
         }
+    }
+
+    public void passesDesignToProcurementDept() {
+        LOGGER.info("Check for the needed materials according to provided design");
     }
 
     @Override
@@ -103,13 +40,17 @@ public class Engineer extends CompanyEmployee implements IProvideServices, IUpgr
         LOGGER.info("I analyze all documents related to the current project");
     }
 
-    public void passesDesignToProcurementDept() {
-        LOGGER.info("Check for the needed materials according to provided design");
-    }
-
     @Override
     public void qualificationUpgrading() {
         LOGGER.info("I regularly upgrade my knowledge and skills in engineering");
+    }
+
+    public boolean getEnoughInfo() {
+        return Engineer.enoughInfo;
+    }
+
+    public void setEnoughInfo(boolean enoughInfo) {
+        Engineer.enoughInfo = enoughInfo;
     }
 }
 

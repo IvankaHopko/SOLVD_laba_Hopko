@@ -9,10 +9,6 @@ public class Supplier implements IMaintainDocumentation {
 
     private static final Logger LOGGER = LogManager.getLogger(Supplier.class);
 
-    static {
-        System.setProperty("log4.configurationFile", "log4j2.xml");
-    }
-
     private String firstName;
     private String lastName;
     private String address;
@@ -25,7 +21,30 @@ public class Supplier implements IMaintainDocumentation {
         this.haveAllNeeded = haveAllNeeded;
     }
 
-    public Supplier() {
+    protected void sellsNeededMaterial() {
+        if (haveAllNeeded) {
+            LOGGER.info("Your order is fully complected");
+        } else {
+            LOGGER.error("Not enough items in store");
+        }
+    }
+
+    public void ordersValidation() {
+        LOGGER.info("I check every if there is enough materials in stock");
+    }
+
+    @Override
+    public void documentMaintenance() {
+        LOGGER.info("I maintain orders documentation");
+    }
+
+    public static boolean inStockChecking(boolean haveAllNeeded) throws NotInStockException {
+        if (!haveAllNeeded) {
+            throw new NotInStockException("Not enough goods in stock");
+        } else {
+            LOGGER.info("Ready to ship the order");
+        }
+        return haveAllNeeded;
     }
 
     public String getFirstName() {
@@ -58,31 +77,5 @@ public class Supplier implements IMaintainDocumentation {
 
     public void setHaveAllNeeded(boolean haveAllNeeded) {
         this.haveAllNeeded = haveAllNeeded;
-    }
-
-    protected void sellsNeededMaterial() {
-        if (haveAllNeeded) {
-            LOGGER.info("Your order is fully complected");
-        } else {
-            LOGGER.error("Not enough items in store");
-        }
-    }
-
-    public void ordersValidation() {
-        LOGGER.info("I check every if there is enough materials in stock");
-    }
-
-    @Override
-    public void documentMaintenance() {
-        LOGGER.info("I maintain orders documentation");
-    }
-
-    public static boolean inStockChecking(boolean haveAllNeeded) throws NotInStockException {
-        if (!haveAllNeeded) {
-            throw new NotInStockException("Not enough goods in stock");
-        } else {
-            LOGGER.info("Ready to ship the order");
-        }
-        return haveAllNeeded;
     }
 }

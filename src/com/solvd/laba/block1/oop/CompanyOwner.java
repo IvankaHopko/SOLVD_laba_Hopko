@@ -7,17 +7,9 @@ public final class CompanyOwner {
 
     private static final Logger LOGGER = LogManager.getLogger(CompanyOwner.class);
 
-    static {
-        System.setProperty("log4.configurationFile", "log4j2.xml");
-    }
-
     private final String firstName = "Chandler";
     private final String lastName = "Bing";
-    private boolean soleOwnership;
-
-    static {
-        LOGGER.info("CompanyOwner class is being initialized");
-    }
+    private final boolean soleOwnership;
 
     public CompanyOwner(boolean soleOwnership) {
         this.soleOwnership = soleOwnership;
@@ -30,4 +22,5 @@ public final class CompanyOwner {
             LOGGER.info("You need to consult with a lawyer");
         }
     }
+
 }

@@ -1,7 +1,7 @@
 package com.solvd.laba.block1.oop;
 
 import com.solvd.laba.block1.oop.exceptions.*;
-import com.solvd.laba.block1.oop.mapsAndCollections.BuildingLinkedList;
+import com.solvd.laba.block1.oop.mapsAndCollections.CustomLinkedList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -69,19 +69,19 @@ public class Main {
             LOGGER.error(e.getMessage());
         }
 
-        BuildingLinkedList<Building> buildings = new BuildingLinkedList<>();
+        CustomLinkedList<String> buildings = new CustomLinkedList<>();
 
-        buildings.add(new Building(3, 220, "in woods", "villa"));
-        buildings.add(new Building(9, 500, "downtown", "block of flats"));
-        buildings.add(new Building(2, 90, "suburbs", "cottage"));
-        buildings.add(new Building(1, 40, "suburbs", "eco-house"));
+        buildings.add("villa");
+        buildings.add("block of flats");
+        buildings.add("cottage");
+        buildings.add("eco-house");
 
-        for (int i = 0; i < buildings.size(); i++) {
-            LOGGER.info(buildings.get(i));
-            LOGGER.info("\n");
+
+        for (int i = 0; i < buildings.getSize(i); i++) {
+            LOGGER.info(buildings.getSize(i));
         }
 
-        Building buildingToRemove = new Building(2, 90, "suburbs", "cottage");
+        String buildingToRemove = "cottage";
         boolean removed = buildings.remove(buildingToRemove);
 
         if (removed) {
@@ -91,16 +91,20 @@ public class Main {
         }
 
         LOGGER.info("\nBuildings after removing:" + "\n");
-        for (int i = 0; i < buildings.size(); i++) {
-            LOGGER.info(buildings.get(i));
+        for (int i = 0; i < buildings.getSize(i); i++) {
+            LOGGER.info(buildings.getSize(i));
         }
 
         Set<Foreman> foremanHashSet = new HashSet<>();
 
-        foremanHashSet.add(new Foreman("Bill", "Moore", "Lead foreman", 40000, 25, true));
-        foremanHashSet.add(new Foreman("Chris", "Jackson", "Senior foreman", 25000, 17, true));
-        foremanHashSet.add(new Foreman("Denis", "Broom", "Foreman", 20000, 6, true));
-        foremanHashSet.add(new Foreman("Neal", "Gates", "Junior foreman", 16000, 2, true));
+        foremanHashSet.add(new Foreman("Bill", "Moore", "Lead foreman", 40000,
+                25, true));
+        foremanHashSet.add(new Foreman("Chris", "Jackson", "Senior foreman", 25000,
+                17, true));
+        foremanHashSet.add(new Foreman("Denis", "Broom", "Foreman", 20000,
+                6, true));
+        foremanHashSet.add(new Foreman("Neal", "Gates", "Junior foreman", 16000,
+                2, true));
 
         LOGGER.info("Foremen details: ");
         for (Foreman foreman : foremanHashSet) {
@@ -109,10 +113,14 @@ public class Main {
 
         Set<Foreman> foremanLinkedHashSet = new LinkedHashSet<>();
 
-        foremanLinkedHashSet.add(new Foreman("Steve", "Hook", "Lead foreman", 40000, 19, true));
-        foremanLinkedHashSet.add(new Foreman("Joe", "Miles", "Senior foreman", 25000, 15, true));
-        foremanLinkedHashSet.add(new Foreman("Luke", "Drake", "Foreman", 20000, 9, true));
-        foremanLinkedHashSet.add(new Foreman("Sam", "Novak", "Junior foreman", 16000, 3, true));
+        foremanLinkedHashSet.add(new Foreman("Steve", "Hook", "Lead foreman", 40000,
+                19, true));
+        foremanLinkedHashSet.add(new Foreman("Joe", "Miles", "Senior foreman", 25000,
+                15, true));
+        foremanLinkedHashSet.add(new Foreman("Luke", "Drake", "Foreman", 20000,
+                9, true));
+        foremanLinkedHashSet.add(new Foreman("Sam", "Novak", "Junior foreman", 16000,
+                3, true));
 
         LOGGER.info("\nForemen details: ");
         for (Foreman foreman : foremanLinkedHashSet) {
@@ -121,10 +129,14 @@ public class Main {
 
         Set<Foreman> foremanTreeSet = new TreeSet<>(Comparator.comparingInt(Foreman::getExperience));
 
-        foremanTreeSet.add(new Foreman("Jim", "Stain", "Lead foreman", 40000, 26, true));
-        foremanTreeSet.add(new Foreman("Mike", "Anderson", "Senior foreman", 25000, 15, true));
-        foremanTreeSet.add(new Foreman("Will", "Middleton", "Foreman", 20000, 7, true));
-        foremanTreeSet.add(new Foreman("Bobby", "Ringo", "Junior foreman", 16000, 1, true));
+        foremanTreeSet.add(new Foreman("Jim", "Stain", "Lead foreman", 40000,
+                26, true));
+        foremanTreeSet.add(new Foreman("Mike", "Anderson", "Senior foreman", 25000,
+                15, true));
+        foremanTreeSet.add(new Foreman("Will", "Middleton", "Foreman", 20000,
+                7, true));
+        foremanTreeSet.add(new Foreman("Bobby", "Ringo", "Junior foreman", 16000,
+                1, true));
 
         LOGGER.info("\nForemen details: ");
         for (Foreman foreman : foremanTreeSet) {

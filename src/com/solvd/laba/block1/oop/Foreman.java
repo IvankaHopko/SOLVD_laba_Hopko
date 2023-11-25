@@ -16,102 +16,12 @@ public class Foreman extends CompanyEmployee implements IProvideServices, IAppro
 
     private static final Logger LOGGER = LogManager.getLogger(Foreman.class);
 
-    static {
-        System.setProperty("log4.configurationFile", "log4j2.xml");
-    }
-
-    private String firstName;
-    private String lastName;
-    private String occupation;
-    private double salary;
-    private int experience;
     private boolean readyToStart;
 
     public Foreman(String firstName, String lastName, String occupation, double salary, int experience,
                    boolean readyToStart) {
         super(firstName, lastName, occupation, salary, experience);
         this.readyToStart = readyToStart;
-    }
-
-    public Foreman() {
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getOccupation() {
-        return this.occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public double getSalary() {
-        return this.salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public int getExperience() {
-        return this.experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
-    public boolean getReadyToStart() {
-        return this.readyToStart;
-    }
-
-    public void setReadyToStart(boolean readyToStart) {
-        this.readyToStart = readyToStart;
-    }
-
-    @Override
-    public String toString() {
-        return "Foreman{" +
-                "firstName=" + getFirstName() + " " +
-                "lastName=" + getLastName() + " " +
-                "occupation=" + getOccupation() + " " +
-                "salary=" + getSalary() + " " +
-                "experience=" + getExperience() + " " +
-                "readyToStart=" + getReadyToStart() +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Foreman foreman = (Foreman) o;
-        return Double.compare(foreman.salary, salary) == 0 &&
-                experience == foreman.experience &&
-                readyToStart == foreman.readyToStart &&
-                Objects.equals(firstName, foreman.firstName) &&
-                Objects.equals(lastName, foreman.lastName) &&
-                Objects.equals(occupation, foreman.occupation);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lastName, experience);
     }
 
     public static boolean checkingForAllNecessaryToStart(boolean readyToStart) throws NotReadyToStartException {
@@ -149,6 +59,40 @@ public class Foreman extends CompanyEmployee implements IProvideServices, IAppro
 
     @Override
     public void documentMaintenance() throws NotImplementedMethodException {
+    }
+
+    public boolean getReadyToStart() {
+        return this.readyToStart;
+    }
+
+    public void setReadyToStart(boolean readyToStart) {
+        this.readyToStart = readyToStart;
+    }
+
+    @Override
+    public String toString() {
+        return "Foreman{" +
+                "firstName=" + getFirstName() + " " +
+                "lastName=" + getLastName() + " " +
+                "occupation=" + getOccupation() + " " +
+                "salary=" + getSalary() + " " +
+                "experience=" + getExperience() + " " +
+                "readyToStart=" + getReadyToStart() +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Foreman)) return false;
+        if (!super.equals(o)) return false;
+        Foreman foreman = (Foreman) o;
+        return readyToStart == foreman.readyToStart;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastName, experience);
     }
 
     @Override

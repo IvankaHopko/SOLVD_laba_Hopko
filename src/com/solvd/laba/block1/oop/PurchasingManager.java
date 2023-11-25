@@ -12,15 +12,6 @@ public class PurchasingManager extends CompanyEmployee
 
     private static final Logger LOGGER = LogManager.getLogger(PurchasingManager.class);
 
-    static {
-        System.setProperty("log4.configurationFile", "log4j2.xml");
-    }
-
-    private String firstName;
-    private String lastName;
-    private String occupation;
-    private double salary;
-    private int experience;
     private static double projectBudget;
     private double requiredCost;
 
@@ -31,47 +22,34 @@ public class PurchasingManager extends CompanyEmployee
         this.requiredCost = requiredCost;
     }
 
-    public PurchasingManager() {
+    @Override
+    public void provideServices() {
+        LOGGER.info("I search for suppliers to purchase the needed materials");
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    @Override
+    public void documentMaintenance() {
+        LOGGER.info("I maintain documentation about purchases");
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Override
+    public void buildingMaterialsApproval() {
+        LOGGER.info("I give my approval about building materials");
     }
 
-    public String getLastName() {
-        return this.lastName;
+    public void communication() {
+        LOGGER.info("I communicate with suppliers about the quality of needed materials");
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getOccupation() {
-        return this.occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public double getSalary() {
-        return this.salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public int getExperience() {
-        return this.experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
+    public static double makingAPurchase(double requiredCost) throws InsufficientFundsException {
+        double fundsLeft;
+        if (projectBudget < requiredCost) {
+            throw new InsufficientFundsException("The purchase price exceeds the allowable budget");
+        } else {
+            LOGGER.info("All needed materials are successfully purchased");
+            fundsLeft = (projectBudget - requiredCost);
+        }
+        return fundsLeft;
     }
 
     public double getProjectBudget() {
@@ -100,36 +78,6 @@ public class PurchasingManager extends CompanyEmployee
                 ", experience=" + getExperience() + '\'' +
                 ", projectBudget=" + getProjectBudget() +
                 '}';
-    }
-
-    @Override
-    public void provideServices() {
-        LOGGER.info("I search for suppliers to purchase the needed materials");
-    }
-
-    @Override
-    public void documentMaintenance() {
-        LOGGER.info("I maintain documentation about purchases");
-    }
-
-    @Override
-    public void buildingMaterialsApproval() {
-        LOGGER.info("I give my approval about building materials");
-    }
-
-    public void communication() {
-        LOGGER.info("I communicate with suppliers about the quality of needed materials");
-    }
-
-    public static double makingAPurchase(double requiredCost) throws InsufficientFundsException {
-        double fundsLeft = 0;
-        if (projectBudget < requiredCost) {
-            throw new InsufficientFundsException("The purchase price exceeds the allowable budget");
-        } else {
-            LOGGER.info("All needed materials are successfully purchased");
-            fundsLeft = (projectBudget - requiredCost);
-        }
-        return fundsLeft;
     }
 }
 

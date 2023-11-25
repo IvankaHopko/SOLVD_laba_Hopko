@@ -7,12 +7,6 @@ public class CostCalculating {
 
     private static final Logger LOGGER = LogManager.getLogger(CostCalculating.class);
 
-    static {
-        System.setProperty("log4.configurationFile", "log4j2.xml");
-    }
-
-    static double totalPrice;
-
     public static double costCalculationOnFloors(Building building) {
         int floors = building.getFloors();
         double costPerFloor = 10000;
@@ -99,12 +93,12 @@ public class CostCalculating {
     protected static final double totalPriceCalculation(Building building, BuildingCrew buildingCrew) {
         double costCalculationOnFloors = costCalculationOnFloors(building);
         double costCalculationOnMeterSquared = costCalculationOnMeterSquared(building);
-        double costCalcutationOnWorkingHours = costCalculationOnWorkingHours(buildingCrew);
+        double costCalculationOnWorkingHours = costCalculationOnWorkingHours(buildingCrew);
         double costCalculationOnLocation = costCalculationOnLocation(building);
         double costCalculationOnBuildingType = costCalculationOnBuildingType(building);
 
         return costCalculationOnFloors + costCalculationOnMeterSquared + costCalculationOnLocation +
-                costCalcutationOnWorkingHours + costCalculationOnBuildingType;
+                costCalculationOnWorkingHours + costCalculationOnBuildingType;
     }
 }
 
