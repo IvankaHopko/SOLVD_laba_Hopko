@@ -3,16 +3,19 @@ package com.solvd.laba.block1.oop;
 import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
 import com.solvd.laba.block1.oop.interfaces.IPayWhenWorkIsDone;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Objects;
 
 public class Accountant extends CompanyEmployee
         implements IProvideServices, IMaintainDocumentation, IPayWhenWorkIsDone {
-    private String firstName;
-    private String lastName;
-    private String occupation;
-    protected double salary;
-    protected int experience;
+
+    private static final Logger LOGGER = LogManager.getLogger(Accountant.class);
     private boolean enoughMoney;
 
     protected Accountant(String firstName, String lastName, String occupation, double salary,
@@ -21,47 +24,45 @@ public class Accountant extends CompanyEmployee
         this.enoughMoney = enoughMoney;
     }
 
-    public Accountant() {
+    public void checkingForEnoughMoney() {
+        if (enoughMoney) {
+            LOGGER.info("There is enough money to pay the purchase invoice");
+        } else {
+            LOGGER.info("Not enough money");
+        }
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    @Override
+    public void provideServices() {
+        LOGGER.info("I pay salary to building staff and I pay for the purchases of materials");
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Override
+    public void doneWorkPayment() {
+        LOGGER.info("I pay money for the work that is done");
     }
 
-    public String getLastName() {
-        return this.lastName;
+    @Override
+    public void documentMaintenance() {
+        LOGGER.info("I maintain accounting documents of the building company");
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public static void taxReporting() throws FileNotFoundException {
+        try (FileReader fileReader = new FileReader("Settlement accounting journal.txt");
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 
-    public String getOccupation() {
-        return this.occupation;
-    }
+            StringBuilder content = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
 
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
+            String fileContent = content.toString();
+            LOGGER.info(fileContent);
 
-    public double getSalary() {
-        return this.salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public int getExperience() {
-        return this.experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
+        } catch (IOException e) {
+            throw new FileNotFoundException("File not found");
+        }
     }
 
     public boolean getEnoughMoney() {
@@ -84,28 +85,4 @@ public class Accountant extends CompanyEmployee
     public int hashCode() {
         return Objects.hash(firstName);
     }
-
-    public void checkingForEnoughMoney() {
-        if (enoughMoney) {
-            System.out.println("There is enough money to pay the purchase invoice");
-        } else {
-            System.out.println("Not enough money");
-        }
-    }
-
-    @Override
-    public void provideServices() {
-        System.out.println("I pay salary to building staff and I pay for the purchases of materials");
-    }
-
-    @Override
-    public void doneWorkPayment() {
-        System.out.println("I pay money for the work that is done");
-    }
-
-    @Override
-    public void documentMaintenance() {
-        System.out.println("I maintain accounting documents of the building company");
-    }
 }
-

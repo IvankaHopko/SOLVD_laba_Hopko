@@ -1,8 +1,14 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.exceptions.NotInStockException;
 import com.solvd.laba.block1.oop.interfaces.IMaintainDocumentation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public abstract class Supplier implements IMaintainDocumentation {
+public class Supplier implements IMaintainDocumentation {
+
+    private static final Logger LOGGER = LogManager.getLogger(Supplier.class);
+
     private String firstName;
     private String lastName;
     private String address;
@@ -15,7 +21,30 @@ public abstract class Supplier implements IMaintainDocumentation {
         this.haveAllNeeded = haveAllNeeded;
     }
 
-    public Supplier() {
+    protected void sellsNeededMaterial() {
+        if (haveAllNeeded) {
+            LOGGER.info("Your order is fully complected");
+        } else {
+            LOGGER.error("Not enough items in store");
+        }
+    }
+
+    public void ordersValidation() {
+        LOGGER.info("I check every if there is enough materials in stock");
+    }
+
+    @Override
+    public void documentMaintenance() {
+        LOGGER.info("I maintain orders documentation");
+    }
+
+    public static boolean inStockChecking(boolean haveAllNeeded) throws NotInStockException {
+        if (!haveAllNeeded) {
+            throw new NotInStockException("Not enough goods in stock");
+        } else {
+            LOGGER.info("Ready to ship the order");
+        }
+        return haveAllNeeded;
     }
 
     public String getFirstName() {
@@ -48,22 +77,5 @@ public abstract class Supplier implements IMaintainDocumentation {
 
     public void setHaveAllNeeded(boolean haveAllNeeded) {
         this.haveAllNeeded = haveAllNeeded;
-    }
-
-    protected void sellsNeededMaterial() {
-        if (haveAllNeeded) {
-            System.out.println("Your order is fully complected");
-        } else {
-            System.out.println("Not enough items in store");
-        }
-    }
-
-    public void ordersValidation() {
-        System.out.println("I check every if there is enough materials in stock");
-    }
-
-    @Override
-    public void documentMaintenance() {
-        System.out.println("I maintain orders documentation");
     }
 }

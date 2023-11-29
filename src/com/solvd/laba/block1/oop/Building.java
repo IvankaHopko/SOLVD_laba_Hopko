@@ -13,15 +13,6 @@ public class Building {
         this.typeOfBuilding = typeOfBuilding;
     }
 
-    @Override
-    public String toString() {
-        return "floors: " + getFloors() + "\n" +
-                "area: " + getArea() + "\n" +
-                "location: " + getLocation() + "\n" +
-                "typeOfBuilding: " + getTypeOfBuilding() +
-                ".";
-    }
-
     public int getFloors() {
         return this.floors;
     }
@@ -52,5 +43,14 @@ public class Building {
 
     public void setTypeOfBuilding(String typeOfBuilding) {
         this.typeOfBuilding = typeOfBuilding;
+    }
+
+    @Override
+    public String toString() {
+        return "floors: " + getFloors() + "\n" +
+                "area: " + getArea() + "\n" +
+                "location: " + getLocation() + "\n" +
+                "typeOfBuilding: " + getTypeOfBuilding() +
+                ".";
     }
 }

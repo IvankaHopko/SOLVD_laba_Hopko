@@ -1,7 +1,11 @@
 package com.solvd.laba.block1.oop;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class CostCalculating {
-    static double totalPrice;
+
+    private static final Logger LOGGER = LogManager.getLogger(CostCalculating.class);
 
     public static double costCalculationOnFloors(Building building) {
         int floors = building.getFloors();
@@ -62,7 +66,7 @@ public class CostCalculating {
         } else if (location.equals("downtown")) {
             cost = regularCost + (regularCost * 0.25);
         } else {
-            System.out.println("It is necessary to discuss the dependence of the price");
+            LOGGER.info("It is necessary to discuss the dependence of the price");
         }
         return cost;
     }
@@ -81,7 +85,7 @@ public class CostCalculating {
         } else if (typeOfBuilding.equals("villa")) {
             cost = regularCost + (regularCost * 0.35);
         } else {
-            System.out.println("It is necessary to discuss the dependence of the price");
+            LOGGER.info("It is necessary to discuss the dependence of the price");
         }
         return cost;
     }
@@ -89,12 +93,12 @@ public class CostCalculating {
     protected static final double totalPriceCalculation(Building building, BuildingCrew buildingCrew) {
         double costCalculationOnFloors = costCalculationOnFloors(building);
         double costCalculationOnMeterSquared = costCalculationOnMeterSquared(building);
-        double costCalcutationOnWorkingHours = costCalculationOnWorkingHours(buildingCrew);
+        double costCalculationOnWorkingHours = costCalculationOnWorkingHours(buildingCrew);
         double costCalculationOnLocation = costCalculationOnLocation(building);
         double costCalculationOnBuildingType = costCalculationOnBuildingType(building);
 
         return costCalculationOnFloors + costCalculationOnMeterSquared + costCalculationOnLocation +
-                costCalcutationOnWorkingHours + costCalculationOnBuildingType;
+                costCalculationOnWorkingHours + costCalculationOnBuildingType;
     }
 }
 

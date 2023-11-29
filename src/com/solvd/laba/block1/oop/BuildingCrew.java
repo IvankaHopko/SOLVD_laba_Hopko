@@ -1,19 +1,52 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.exceptions.OutOfTimeException;
 import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BuildingCrew implements IUpgradeQualification {
+
+    private static final Logger LOGGER = LogManager.getLogger(BuildingCrew.class);
+
     private int totalExperience;
     private double minCostPerHour;
     private int workingHours;
+    private static int deadlineInMonths;
+    private int monthsToBuild;
 
-    public BuildingCrew(int totalExperience, double minCostPerHour, int workingHours) {
+    public BuildingCrew(int totalExperience, double minCostPerHour, int workingHours, int deadlineInMonths,
+                        int monthsToBuild) {
         this.totalExperience = totalExperience;
         this.minCostPerHour = minCostPerHour;
         this.workingHours = workingHours;
+        BuildingCrew.deadlineInMonths = deadlineInMonths;
+        this.monthsToBuild = monthsToBuild;
     }
 
-    public BuildingCrew() {
+    @Override
+    public void provideServices() {
+        LOGGER.info("We build a new building according to its design");
+    }
+
+    @Override
+    public void qualificationUpgrading() {
+        LOGGER.info("We regularly have trainings to upgrade our qualification");
+    }
+
+    public void buildingWork() {
+        LOGGER.info("We provide building services according to engineered plan");
+    }
+
+    public static int buildingProcess(int monthsToBuild) throws OutOfTimeException {
+        int finalWorksTime = 0;
+        if (monthsToBuild > deadlineInMonths) {
+            throw new OutOfTimeException("Out of limited time");
+        } else {
+            LOGGER.info("Project is finished in time");
+            finalWorksTime = (deadlineInMonths - monthsToBuild);
+        }
+        return finalWorksTime;
     }
 
     public int getTotalExperience() {
@@ -40,17 +73,19 @@ public class BuildingCrew implements IUpgradeQualification {
         this.workingHours = workingHours;
     }
 
-    public void buildingWork() {
-        System.out.println("We provide building services according to engineered plan");
+    public int getDeadlineInMonths() {
+        return BuildingCrew.deadlineInMonths;
     }
 
-    @Override
-    public void provideServices() {
-        System.out.println("We build a new building according to its design");
+    public void setDeadline(int deadlineInMonths) {
+        BuildingCrew.deadlineInMonths = deadlineInMonths;
     }
 
-    @Override
-    public void qualificationUpgrading() {
-        System.out.println("We regularly have trainings to upgrade our qualification");
+    public int getMonthsToBuild() {
+        return this.monthsToBuild;
+    }
+
+    public void setMonthsToBuild(int monthsToBuild) {
+        this.monthsToBuild = monthsToBuild;
     }
 }

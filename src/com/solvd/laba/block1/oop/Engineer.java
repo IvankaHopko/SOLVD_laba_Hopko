@@ -1,84 +1,56 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.exceptions.NotEnoughInfoException;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
 import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Engineer extends CompanyEmployee implements IProvideServices, IUpgradeQualification {
-    private String firstName;
-    private String lastName;
-    private String occupation;
-    private double salary;
-    public int experience;
-    public boolean enoughInfo;
+
+    private static final Logger LOGGER = LogManager.getLogger(Engineer.class);
+
+    private static boolean enoughInfo;
 
     public Engineer(String firstName, String lastName, String occupation, double salary, int experience,
                     boolean enoughInfo) {
         super(firstName, lastName, occupation, salary, experience);
-        this.enoughInfo = enoughInfo;
+        Engineer.enoughInfo = enoughInfo;
     }
 
-    public Engineer() {
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getOccupation() {
-        return this.occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public double getSalary() {
-        return this.salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    @Override
-    public String toString() {
-        return "Engineer{" +
-                "salary=" + salary +
-                '}';
-    }
-
-    public void checkingForEnoughInfo() {
-        if (enoughInfo) {
-            System.out.println("Ready to start designing");
+    public static void checkingForEnoughInfo(boolean enoughInfo) throws NotEnoughInfoException {
+        if (!enoughInfo) {
+            throw new NotEnoughInfoException("Cannot execute project. Please, provide more details");
         } else {
-            System.out.println("Not enough information");
+            LOGGER.info("Order has been accepted for execution");
         }
+    }
+
+    public void passesDesignToProcurementDept() {
+        LOGGER.info("Check for the needed materials according to provided design");
     }
 
     @Override
     public void provideServices() {
-        System.out.println("I create a design for a new project");
+        LOGGER.info("I create a design for a new project");
     }
 
-    public void passesDesignToProcurementDept() {
-        System.out.println("Check for the needed materials according to provided design");
+    @Override
+    public void documentMaintenance() {
+        LOGGER.info("I analyze all documents related to the current project");
     }
 
     @Override
     public void qualificationUpgrading() {
-        System.out.println("I regularly upgrade my knowledge and skills in engineering");
+        LOGGER.info("I regularly upgrade my knowledge and skills in engineering");
+    }
+
+    public boolean getEnoughInfo() {
+        return Engineer.enoughInfo;
+    }
+
+    public void setEnoughInfo(boolean enoughInfo) {
+        Engineer.enoughInfo = enoughInfo;
     }
 }
 

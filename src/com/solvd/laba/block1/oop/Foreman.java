@@ -1,17 +1,21 @@
 package com.solvd.laba.block1.oop;
 
+import com.solvd.laba.block1.oop.exceptions.NotImplementedMethodException;
+import com.solvd.laba.block1.oop.exceptions.NotReadyToStartException;
 import com.solvd.laba.block1.oop.interfaces.IApproveBuildingMaterials;
 import com.solvd.laba.block1.oop.interfaces.IApproveDesign;
 import com.solvd.laba.block1.oop.interfaces.IProvideServices;
 import com.solvd.laba.block1.oop.interfaces.IUpgradeQualification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Foreman extends CompanyEmployee
-        implements IProvideServices, IApproveBuildingMaterials, IApproveDesign, IUpgradeQualification {
-    private String firstName;
-    private String lastName;
-    private String occupation;
-    private double salary;
-    private int experience;
+import java.util.Objects;
+
+public class Foreman extends CompanyEmployee implements IProvideServices, IApproveBuildingMaterials, IApproveDesign,
+                                                        IUpgradeQualification, Comparable<Foreman> {
+
+    private static final Logger LOGGER = LogManager.getLogger(Foreman.class);
+
     private boolean readyToStart;
 
     public Foreman(String firstName, String lastName, String occupation, double salary, int experience,
@@ -20,47 +24,41 @@ public class Foreman extends CompanyEmployee
         this.readyToStart = readyToStart;
     }
 
-    public Foreman() {
+    public static boolean checkingForAllNecessaryToStart(boolean readyToStart) throws NotReadyToStartException {
+        if (!readyToStart) {
+            throw new NotReadyToStartException("Cannot start to work on a project");
+        } else {
+            LOGGER.info("The project has been successfully started");
+        }
+        return readyToStart;
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    @Override
+    public void provideServices() {
+        LOGGER.info("I lead the building crew");
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Override
+    public void buildingMaterialsApproval() {
+        LOGGER.info("I give my approval about building materials");
     }
 
-    public String getLastName() {
-        return this.lastName;
+    public final void crewLeading() {
+        LOGGER.info("I lead the building crew during our work");
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    @Override
+    public void designApproval() {
+        LOGGER.info("I give my approval about the project design");
     }
 
-    public String getOccupation() {
-        return this.occupation;
+    @Override
+    public void qualificationUpgrading() {
+        LOGGER.info("I constantly upgrade my knowledge in building and team managing");
     }
 
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public double getSalary() {
-        return this.salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public int getExperience() {
-        return this.experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
+    @Override
+    public void documentMaintenance() throws NotImplementedMethodException {
     }
 
     public boolean getReadyToStart() {
@@ -74,40 +72,32 @@ public class Foreman extends CompanyEmployee
     @Override
     public String toString() {
         return "Foreman{" +
-                "experience=" + experience +
+                "firstName=" + getFirstName() + " " +
+                "lastName=" + getLastName() + " " +
+                "occupation=" + getOccupation() + " " +
+                "salary=" + getSalary() + " " +
+                "experience=" + getExperience() + " " +
+                "readyToStart=" + getReadyToStart() +
                 '}';
     }
 
-    public void checkingForAllNecessaryToStart() {
-        if (readyToStart) {
-            System.out.println("Ready to start building");
-        } else {
-            System.out.println("Not ready to start building");
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Foreman)) return false;
+        if (!super.equals(o)) return false;
+        Foreman foreman = (Foreman) o;
+        return readyToStart == foreman.readyToStart;
     }
 
     @Override
-    public void provideServices() {
-        System.out.println("I lead the building crew");
+    public int hashCode() {
+        return Objects.hash(lastName, experience);
     }
 
     @Override
-    public void buildingMaterialsApproval() {
-        System.out.println("I give my approval about building materials");
-    }
-
-    public final void crewLeading() {
-        System.out.println("I lead the building crew during our work");
-    }
-
-    @Override
-    public void designApproval() {
-        System.out.println("I give my approval about the project design");
-    }
-
-    @Override
-    public void qualificationUpgrading() {
-        System.out.println("I constantly upgrade my knowledge in building and team managing");
+    public int compareTo(Foreman otherForeman) {
+        return Integer.compare(this.experience, otherForeman.experience);
     }
 }
 

@@ -2,10 +2,15 @@ package com.solvd.laba.block1.oop;
 
 import com.solvd.laba.block1.oop.interfaces.IApproveDesign;
 import com.solvd.laba.block1.oop.interfaces.IPayWhenWorkIsDone;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Objects;
 
 public class Customer implements IPayWhenWorkIsDone, IApproveDesign {
+
+    private static final Logger LOGGER = LogManager.getLogger(Customer.class);
+
     private String firstName;
     private String lastName;
     private Building desiredBuilding;
@@ -16,7 +21,18 @@ public class Customer implements IPayWhenWorkIsDone, IApproveDesign {
         this.desiredBuilding = desiredBuilding;
     }
 
-    public Customer() {
+    public final void providesIdea() {
+        LOGGER.info("I have an idea about the building. And I want your company to help me");
+    }
+
+    @Override
+    public void doneWorkPayment() {
+        LOGGER.info("I pay money for the work that is done");
+    }
+
+    @Override
+    public void designApproval() {
+        LOGGER.info("I approve design if it is done according to my idea");
     }
 
     public String getFirstName() {
@@ -44,6 +60,13 @@ public class Customer implements IPayWhenWorkIsDone, IApproveDesign {
     }
 
     @Override
+    public String toString() {
+        return "desiredBuilding{" +
+                "floors='" + getDesiredBuilding() +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == this) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -54,33 +77,7 @@ public class Customer implements IPayWhenWorkIsDone, IApproveDesign {
     }
 
     @Override
-    public String toString() {
-        return "desiredBuilding{" +
-                "floors='" + getDesiredBuilding() +
-                '}';
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName);
-    }
-
-    public final void providesIdea() {
-        System.out.println("I have an idea about the building. And I want your company to help me");
-    }
-
-    @Override
-    public void doneWorkPayment() {
-        System.out.println("I pay money for the work that is done");
-    }
-
-    @Override
-    public void designApproval() {
-        System.out.println("I approve design if it is done according to my idea");
-    }
-
-    public void showCustomerOrderDetails(Customer customer) {
-        System.out.println("Customer: " + customer.getFirstName() + customer.getLastName() +
-                customer.getDesiredBuilding());
     }
 }

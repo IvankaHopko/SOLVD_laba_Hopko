@@ -9,6 +9,9 @@ public abstract class CompanyEmployee {
     private double salary;
     protected int experience;
 
+    public CompanyEmployee() {
+    }
+
     public CompanyEmployee(String firstName, String lastName, String occupation, double salary, int experience) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -17,24 +20,21 @@ public abstract class CompanyEmployee {
         this.experience = experience;
     }
 
-    public CompanyEmployee() {
+    public double getRequiredCost() {
+        return this.getRequiredCost();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CompanyEmployee that = (CompanyEmployee) o;
-        return Double.compare(that.salary, salary) == 0 &&
-                experience == that.experience &&
-                Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName);
+    public boolean getReadyToStart() {
+        return this.getReadyToStart();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, salary, experience);
+    public boolean getEnoughInfo() {
+        return getEnoughInfo();
     }
+
+    public abstract void provideServices();
+
+    public abstract void documentMaintenance();
 
     public String getFirstName() {
         return this.firstName;
@@ -76,10 +76,20 @@ public abstract class CompanyEmployee {
         this.experience = experience;
     }
 
-    public void provideServices() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CompanyEmployee that = (CompanyEmployee) o;
+        return Double.compare(that.salary, salary) == 0 &&
+                experience == that.experience &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName);
     }
 
-    public void documentMaintenance() {
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, salary, experience);
     }
 }
 
